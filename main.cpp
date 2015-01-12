@@ -24,8 +24,8 @@
 
 using namespace std;
 
-const GLsizei SCREEN_WIDTH = 900;
-const GLsizei  SCREEN_HEIGHT = 700;
+GLsizei duzina = 800;
+GLsizei  visina = 600;
 //Keep track of the frame count
 int frame = 0;
 int avergeFrame=0;
@@ -76,6 +76,23 @@ bool init()
         //SDL_GL_SetAttribute(SDL_GL_S);
         //SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE,8);
         //SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+        // Get current display mode of all displays.
+        SDL_DisplayMode current;
+         for(int i = 0; i < SDL_GetNumVideoDisplays(); ++i){
+
+           int should_be_zero = SDL_GetCurrentDisplayMode(i, &current);
+
+           if(should_be_zero != 0)
+             // In case of error...
+             SDL_Log("Could not get display mode for video display #%d: %s", i, SDL_GetError());
+
+           else
+             // On success, print the current display mode.
+             SDL_Log("Display #%d: current display mode is %dx%dpx @ %dhz. \n", i, current.w, current.h, current.refresh_rate);
+             duzina = current.w;
+             visina = current.h;
+
+         }
 
         // use double buffering
         //   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -84,7 +101,7 @@ bool init()
         //     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
         glDepthMask( 1 );
         //Create window
-        gWindow = SDL_CreateWindow( "SDL Tutorial",  SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL  | SDL_WINDOW_SHOWN );
+        gWindow = SDL_CreateWindow( "SDL Tutorial",  SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, duzina, visina, SDL_WINDOW_OPENGL  |  SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_SHOWN );
         if( gWindow == NULL )
         {
             cout << "Window could not be created! SDL Error: " << SDL_GetError() << endl;
@@ -140,7 +157,7 @@ bool initGL()
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
     mProjection = new glm::mat4();
-    setProjection3D(45.0f, (float)((float)SCREEN_WIDTH/(float)SCREEN_HEIGHT) , 0.001f, 1000.0f);
+    setProjection3D(45.0f, (float)duzina/(float)visina , 0.001f, 1000.0f);
     glEnable( GL_LINE_SMOOTH );
     //glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     //glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
@@ -166,6 +183,7 @@ void close()
     delete s2;
     //Quit SDL subsystems
     SDL_Quit();
+    exit(0);
 }
 
 void handleKeys( SDL_Event event, int x __attribute__((unused)), int y __attribute__((unused)))
@@ -176,6 +194,9 @@ void handleKeys( SDL_Event event, int x __attribute__((unused)), int y __attribu
         /* Check the SDLKey values and move change the coords */
         switch( event.key.keysym.sym ){
         case SDLK_q:
+            close();
+            break;
+        case SDLK_ESCAPE:
             close();
             break;
         case SDLK_LEFT:

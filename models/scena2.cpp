@@ -118,7 +118,8 @@ void scena2::RenderScene(glm::mat4 *ProjectionMatrix)
 
 	// And one translating and rotating on top
 
-	mCurrent = glm::translate(mModelView, glm::vec3(20.0f*float(sin(fRotationAngle*PIover180)), 10.0f, 0.0f));
+    mCurrent = glm::translate(mModelView, glm::vec3(25.0f*float(sin(fRotationAngle*PIover180)), 15.0f, 0.0f));
+    mCurrent = glm::scale(mCurrent, glm::vec3(2.0, 2.0, 2.0));
     mCurrent = glm::rotate(mCurrent, fRotationAngle, glm::vec3(1.0f, 0.0f, 0.0f));
 	glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
 	glDrawArrays(GL_TRIANGLES, 0, 12);
