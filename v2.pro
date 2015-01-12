@@ -34,6 +34,6 @@ DISTFILES += \
     data/shaders/shaderm.frag \
     data/shaders/shader.vert \
     data/shaders/shaderm.vert \
-    LICENSE.txt
+    LICENSE
 
 
