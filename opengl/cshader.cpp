@@ -12,7 +12,7 @@ CShader::CShader()
 Name:	loadShader
 
 Params:	sFile - path to a file
-		a_iType - type of shader (fragment, vertex, geometry)
+        a_iType - type of shader (fragment, vertex, geometry)
 
 Result:	Loads and compiles shader.
 
@@ -49,45 +49,21 @@ bool CShader::LoadShader(string sFile, int a_iType)
 	return 1;
 }
 
-/*-----------------------------------------------
 
-Name:	IsLoaded
-
-Params:	none
-
-Result:	True if shader was loaded and compiled.
-
-/*---------------------------------------------*/
 
 bool CShader::IsLoaded()
 {
 	return bLoaded;
 }
 
-/*-----------------------------------------------
 
-Name:	GetShaderID
-
-Params:	none
-
-Result:	Returns ID of a generated shader.
-
-/*---------------------------------------------*/
 
 UINT CShader::GetShaderID()
 {
 	return uiShader;
 }
 
-/*-----------------------------------------------
 
-Name:	DeleteShader
-
-Params:	none
-
-Result:	Deletes shader and frees memory in GPU.
-
-/*---------------------------------------------*/
 
 void CShader::DeleteShader()
 {
@@ -101,31 +77,14 @@ CShaderProgram::CShaderProgram()
 	bLinked = false;
 }
 
-/*-----------------------------------------------
 
-Name:	CreateProgram
-
-Params:	none
-
-Result:	Creates a new program.
-
-/*---------------------------------------------*/
 
 void CShaderProgram::CreateProgram()
 {
 	uiProgram = glCreateProgram();
 }
 
-/*-----------------------------------------------
 
-Name:	AddShaderToProgram
-
-Params:	sShader - shader to add
-
-Result:	Adds a shader (like source file) to
-		a program, but only compiled one.
-
-/*---------------------------------------------*/
 
 bool CShaderProgram::AddShaderToProgram(CShader* shShader)
 {
@@ -136,15 +95,7 @@ bool CShaderProgram::AddShaderToProgram(CShader* shShader)
 	return true;
 }
 
-/*-----------------------------------------------
 
-Name:	LinkProgram
-
-Params:	none
-
-Result:	Performs final linkage of OpenGL program.
-
-/*---------------------------------------------*/
 
 bool CShaderProgram::LinkProgram()
 {
@@ -155,15 +106,6 @@ bool CShaderProgram::LinkProgram()
 	return bLinked;
 }
 
-/*-----------------------------------------------
-
-Name:	DeleteProgram
-
-Params:	none
-
-Result:	Deletes program and frees memory on GPU.
-
-/*---------------------------------------------*/
 
 void CShaderProgram::DeleteProgram()
 {
@@ -172,15 +114,6 @@ void CShaderProgram::DeleteProgram()
 	glDeleteProgram(uiProgram);
 }
 
-/*-----------------------------------------------
-
-Name:	UseProgram
-
-Params:	none
-
-Result:	Tells OpenGL to use this program.
-
-/*---------------------------------------------*/
 
 void CShaderProgram::UseProgram()
 {

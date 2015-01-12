@@ -16,11 +16,8 @@
 #include <iostream>
 #include <string>
 
-#include "models/kvadrat.h"
-#include "models/scena2.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include "sdl/ltimer.h"
+#include "opengl/opengl.h"
 
 using namespace std;
 
@@ -38,30 +35,17 @@ GLuint gProgramID = 0;
 //OpenGL context
 SDL_GLContext gContext;
 
-kvadrat *kvadrat1 = 0;
-scena2 *s2 =0;
-glm::mat4 *mProjection;
-//Starts up SDL, creates window, and initializes OpenGL
-bool init();
-//Initializes rendering program and clear color
-bool initGL();
 
-void setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
-{
-    (*mProjection) = glm::perspective(fFOV, fAspectRatio, fNear, fFar);
-}
+void close();
+
 
 bool init()
 {
-
-    //Initialization flag
-    bool success = true;
-
     //Initialize SDL
     if( SDL_Init( SDL_INIT_EVERYTHING) < 0 )
     {
         cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << endl;
-        success = false;
+        close();
     }
     else
     {
@@ -105,7 +89,7 @@ bool init()
         if( gWindow == NULL )
         {
             cout << "Window could not be created! SDL Error: " << SDL_GetError() << endl;
-            success = false;
+            close();
         }
         else
         {
@@ -114,8 +98,7 @@ bool init()
             if( gContext == NULL )
             {
                 cout << "OpenGL context could not be created! SDL Error: %s\n" << SDL_GetError() << endl;
-                success = false;
-                exit(-1);
+                close();
             }
             else
             {
@@ -125,6 +108,7 @@ bool init()
                 if( glewError != GLEW_OK )
                 {
                     cout << "Error initializing GLEW! %s\n"<< glewGetErrorString( glewError ) <<endl;
+                    close();
                 }
 
                 //Use Vsync
@@ -133,54 +117,21 @@ bool init()
                     cout <<"Warning: Unable to set VSync! SDL Error: "<< SDL_GetError()<<endl;
                 }
 
-                //Initialize OpenGL
-                if( !initGL() )
-                {
-                    cout <<"nable to initialize OpenGL!\n";
-                    success = false;
-                }
+
             }
         }
     }
-
-    //kvadrat1= new kvadrat();
-    s2 = new scena2();
-    return success;
-}
-
-bool initGL()
-{
-    //glShadeModel( GL_SMOOTH );
-
-    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-    //Initialize Modelview Matrix
-    glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
-    mProjection = new glm::mat4();
-    setProjection3D(45.0f, (float)duzina/(float)visina , 0.001f, 1000.0f);
-    glEnable( GL_LINE_SMOOTH );
-    //glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-    //glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-    //glCullFace( GL_FRONT_AND_BACK);
-    //glFrontFace( GL_CCW );
-    //glEnable( GL_CULL_FACE );
-    //glEnable(GL_DEPTH_TEST);
-    //glClearStencil(0x0);
-    //glEnable(GL_STENCIL_TEST);
-    glClearColor( 0.f, 50.f, 200.f, 1.f );
-    fpsTimer.start();
     return true;
 }
 
+
+
 void close()
 {
-    //Deallocate program
-    glDeleteProgram( gProgramID );
-
     //Destroy window
-    SDL_DestroyWindow( gWindow );
+    if( gWindow != NULL )
+        SDL_DestroyWindow( gWindow );
     gWindow = NULL;
-    delete s2;
     //Quit SDL subsystems
     SDL_Quit();
     exit(0);
@@ -245,11 +196,6 @@ void handleKeys( SDL_Event event, int x __attribute__((unused)), int y __attribu
 
 
 
-void render(){
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //kvadrat1->render();
-    s2->RenderScene(mProjection);
-}
 
 int main( int argc __attribute__((unused)), char* args[] __attribute__((unused)))
 {  
@@ -257,9 +203,16 @@ int main( int argc __attribute__((unused)), char* args[] __attribute__((unused))
     if( !init() )
     {
         cout <<"Failed to initialize!\n";
+        close();
     }
-    else
+    //Initialize OpenGL
+    opengl GL;
+    if( !GL.initGL(duzina,visina) )
     {
+        cout <<"nable to initialize OpenGL!\n";
+        close();
+    }
+     fpsTimer.start();
         //Main loop flag
         bool quit = false;
 
@@ -289,7 +242,7 @@ int main( int argc __attribute__((unused)), char* args[] __attribute__((unused))
 
             //Render quad
 
-            render();
+            GL.render();
             //SDL_Delay(10);
             SDL_GL_SwapWindow( gWindow );
             frame++;
@@ -311,10 +264,9 @@ int main( int argc __attribute__((unused)), char* args[] __attribute__((unused))
 
         //Disable text input
         SDL_StopTextInput();
-    }
+
 
     //Free resources and close SDL
     close();
-
     return 0;
 }

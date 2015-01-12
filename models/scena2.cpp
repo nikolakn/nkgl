@@ -100,19 +100,19 @@ void scena2::RenderScene(glm::mat4 *ProjectionMatrix)
 
 	// Render rotating pyramid in the middle
 
-    glm::mat4 mCurrent = glm::rotate(mModelView, fRotationAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 mCurrent = glm::rotate(mModelView, fRotationAngle*PIover180, glm::vec3(0.0f, 1.0f, 0.0f));
 	glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
 	glDrawArrays(GL_TRIANGLES, 0, 12);
 
 	// Render translating pyramids
 
 	// One on the left
-	mCurrent = glm::translate(mModelView, glm::vec3(-20.0f, 10.0f*float(sin(fRotationAngle*PIover180)), 0.0f));
+    mCurrent = glm::translate(mModelView, glm::vec3(-20.0f, 10.0f*float(sin(fRotationAngle*PIover180)), 0.0f));
 	glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
 	glDrawArrays(GL_TRIANGLES, 0, 12);
 
 	// One on the right
-	mCurrent = glm::translate(mModelView, glm::vec3(20.0f, -10.0f*float(sin(fRotationAngle*PIover180)), 0.0f));
+    mCurrent = glm::translate(mModelView, glm::vec3(20.0f, -10.0f*float(sin(fRotationAngle*PIover180)), 0.0f));
 	glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
 	glDrawArrays(GL_TRIANGLES, 0, 12);
 
@@ -120,18 +120,18 @@ void scena2::RenderScene(glm::mat4 *ProjectionMatrix)
 
     mCurrent = glm::translate(mModelView, glm::vec3(25.0f*float(sin(fRotationAngle*PIover180)), 15.0f, 0.0f));
     mCurrent = glm::scale(mCurrent, glm::vec3(2.0, 2.0, 2.0));
-    mCurrent = glm::rotate(mCurrent, fRotationAngle, glm::vec3(1.0f, 0.0f, 0.0f));
+    mCurrent = glm::rotate(mCurrent, fRotationAngle*PIover180, glm::vec3(1.0f, 0.0f, 0.0f));
 	glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
 	glDrawArrays(GL_TRIANGLES, 0, 12);
 
 	// And lastly - render scaling pyramid that rotates
 
-	float fScaleValue = 1.5f+float(sin(fRotationAngle*PIover180))*0.5f;
+    float fScaleValue = 1.5f+float(sin(fRotationAngle*PIover180))*0.5f;
 	mCurrent = glm::translate(mModelView, glm::vec3(0.0f, -10.0f, 0.0f));
 	mCurrent = glm::scale(mCurrent, glm::vec3(fScaleValue, fScaleValue, fScaleValue));
-    mCurrent = glm::rotate(mCurrent, fRotationAngle, glm::vec3(1.0f, 0.0f, 0.0f));
-    mCurrent = glm::rotate(mCurrent, fRotationAngle, glm::vec3(0.0f, 1.0f, 0.0f));
-    mCurrent = glm::rotate(mCurrent, fRotationAngle, glm::vec3(0.0f, 0.0f, 1.0f));
+    mCurrent = glm::rotate(mCurrent, fRotationAngle*PIover180, glm::vec3(1.0f, 0.0f, 0.0f));
+    mCurrent = glm::rotate(mCurrent, fRotationAngle*PIover180, glm::vec3(0.0f, 1.0f, 0.0f));
+    mCurrent = glm::rotate(mCurrent, fRotationAngle*PIover180, glm::vec3(0.0f, 0.0f, 1.0f));
 	glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
 	glDrawArrays(GL_TRIANGLES, 0, 12);
 

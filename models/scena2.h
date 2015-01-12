@@ -1,3 +1,4 @@
+#define GLM_FORCE_RADIANS
 #include <GL/glew.h>
 #include <GL/glu.h>
 #include <iostream>
@@ -28,7 +29,7 @@ CShaderProgram spMain;
 
 public:
 	scena2();
-	void RenderScene(glm::mat4 *ProjectionMatrix);
+    void RenderScene(glm::mat4 *ProjectionMatrix);
 	void ReleaseScene();
 	
 };

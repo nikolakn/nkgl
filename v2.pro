@@ -13,7 +13,9 @@ SOURCES += main.cpp \
     models/scena1.cpp \
     models/scena2.cpp \
     opengl/cshader.cpp \
-    sdl/ltimer.cpp
+    sdl/ltimer.cpp \
+    opengl/opengl.cpp \
+    opengl/camera.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -23,7 +25,9 @@ HEADERS += \
     models/scena1.h \
     models/scena2.h \
     opengl/cshader.h \
-    sdl/ltimer.h
+    sdl/ltimer.h \
+    opengl/opengl.h \
+    opengl/camera.h
 
 DISTFILES += \
     data/shaders/shader.frag \
