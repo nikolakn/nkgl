@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-class kvadrat
+class NKkvadrat
 {
 private:
 	//Graphics program
@@ -14,7 +14,7 @@ private:
 
 
 public:
-	kvadrat();
+    NKkvadrat();
 	void render();
 
 private:

@@ -2,21 +2,12 @@
 
 #include "cshader.h"
 #include <fstream>
+
 CShader::CShader()
 {
 	bLoaded = false;
 }
 
-/*-----------------------------------------------
-
-Name:	loadShader
-
-Params:	sFile - path to a file
-        a_iType - type of shader (fragment, vertex, geometry)
-
-Result:	Loads and compiles shader.
-
-/*---------------------------------------------*/
 
 bool CShader::LoadShader(string sFile, int a_iType)
 {
@@ -58,7 +49,7 @@ bool CShader::IsLoaded()
 
 
 
-UINT CShader::GetShaderID()
+unsigned int CShader::GetShaderID()
 {
 	return uiShader;
 }

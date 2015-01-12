@@ -1,16 +1,16 @@
 #include "opengl.h"
 
-opengl::opengl()
+NKOpengl::NKOpengl()
 {
     //s2 = new scena2();
 }
 
-opengl::~opengl()
+NKOpengl::~NKOpengl()
 {
 
 }
 
-bool  opengl::initGL(int duzina, int visina)
+bool  NKOpengl::initGL(int duzina, int visina)
 {
     //glShadeModel( GL_SMOOTH );
 
@@ -25,7 +25,7 @@ bool  opengl::initGL(int duzina, int visina)
     //glCullFace( GL_FRONT_AND_BACK);
     //glFrontFace( GL_CCW );
     //glEnable( GL_CULL_FACE );
-    //glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
     //glClearStencil(0x0);
     //glEnable(GL_STENCIL_TEST);
     glClearColor( 0.f, 50.f, 200.f, 1.f );
@@ -34,7 +34,8 @@ bool  opengl::initGL(int duzina, int visina)
 }
 
 
-void opengl::render(){
+void NKOpengl::render(){
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     //kvadrat1->render();
     s2.RenderScene(kamera.getProjectionMat());

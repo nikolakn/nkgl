@@ -2,8 +2,9 @@
 #include "scena2.h"
 
 
-scena2::scena2()
+NKscena2::NKscena2()
 {
+    fRotationAngle = 0.0;
     //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// Setup pyramid
@@ -79,11 +80,8 @@ scena2::scena2()
 	glClearDepth(1.0);
 	
 }
-float fRotationAngle = 0.0f;
-const float PIover180 = 3.1415f/180.0f;
 
-
-void scena2::RenderScene(glm::mat4 *ProjectionMatrix)
+void NKscena2::RenderScene(glm::mat4 *ProjectionMatrix)
 {
 	// We just clear color
 
@@ -139,7 +137,7 @@ void scena2::RenderScene(glm::mat4 *ProjectionMatrix)
 }
 
 
-void scena2::ReleaseScene()
+void NKscena2::ReleaseScene()
 {
 	spMain.DeleteProgram();
 

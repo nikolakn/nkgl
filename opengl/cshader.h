@@ -30,7 +30,6 @@ using namespace std;
 #define RSFOR(q,s,e) for(int q=s;q>=e;q--)
 
 #define ESZ(elem) (int)elem.size()
-typedef  unsigned int UINT;
 
 class CShader
 {
@@ -39,12 +38,12 @@ public:
 	void DeleteShader();
 
 	bool IsLoaded();
-	UINT GetShaderID();
+    unsigned int GetShaderID();
 
 	CShader();
 
 private:
-	UINT uiShader; // ID of shader
+    unsigned int uiShader; // ID of shader
 	int iType; // GL_VERTEX_SHADER, GL_FRAGMENT_SHADER...
 	bool bLoaded; // Whether shader was loaded and compiled
 };
@@ -69,11 +68,11 @@ public:
 
 	void UseProgram();
 
-    UINT GetProgramID() {return uiProgram;}
+    unsigned int GetProgramID() {return uiProgram;}
 
 	CShaderProgram();
 
 private:
-	UINT uiProgram; // ID of program
+    unsigned int uiProgram; // ID of program
 	bool bLinked; // Whether program was linked and is ready to use
 };

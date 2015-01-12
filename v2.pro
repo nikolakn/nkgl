@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     opengl/cshader.cpp \
     sdl/ltimer.cpp \
     opengl/opengl.cpp \
-    opengl/camera.cpp
+    opengl/camera.cpp \
+    sdl/nksdl.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -27,7 +28,8 @@ HEADERS += \
     opengl/cshader.h \
     sdl/ltimer.h \
     opengl/opengl.h \
-    opengl/camera.h
+    opengl/camera.h \
+    sdl/nksdl.h
 
 DISTFILES += \
     data/shaders/shader.frag \

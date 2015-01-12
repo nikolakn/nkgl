@@ -4,9 +4,8 @@
 #include <string>
 #include "opengl/cshader.h"
 
-typedef  unsigned int uint;
 
-class scena1
+class NKscena1
 {
 private:
 
@@ -16,14 +15,14 @@ float fQuad[12]; // Data to render quad using triangle strips (4 vertices, each 
 float fTriangleColor[9];
 float fQuadColor[12];
 
-uint uiVBO[4];
-uint uiVAO[2];
+unsigned int uiVBO[4];
+unsigned int uiVAO[2];
 
 CShader shVertex, shFragment;
 CShaderProgram spMain;
 
 public:
-	scena1();
+    NKscena1();
 	void RenderScene();
 	void ReleaseScene();
 	

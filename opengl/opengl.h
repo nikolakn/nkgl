@@ -18,17 +18,17 @@
 
 #include "models/scena2.h"
 #include "opengl/camera.h"
-class opengl
+class NKOpengl
 {
 public:
-    opengl();
-    ~opengl();
+    NKOpengl();
+    ~NKOpengl();
     bool initGL(int w, int h);
 
     void render();
 private:
-    scena2 s2;
-    camera kamera;
+    NKscena2 s2;
+    NKCamera kamera;
 };
 
 #endif // OPENGL_H

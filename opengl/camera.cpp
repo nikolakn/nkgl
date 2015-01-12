@@ -1,16 +1,16 @@
 #include "camera.h"
 
-camera::camera()
+NKCamera::NKCamera()
 {
 
 }
 
-camera::~camera()
+NKCamera::~NKCamera()
 {
 
 }
 
-void camera::setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
+void NKCamera::setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
 {
     mProjection = glm::perspective(fFOV, fAspectRatio, fNear, fFar);
 }

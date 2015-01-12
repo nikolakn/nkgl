@@ -6,11 +6,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-class camera
+class NKCamera
 {
 public:
-    camera();
-    ~camera();
+    NKCamera();
+    ~NKCamera();
 
     void setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar);
     glm::mat4* getProjectionMat(void) {return &mProjection;}
