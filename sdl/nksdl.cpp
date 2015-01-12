@@ -2,7 +2,7 @@
 
 NKSDL::NKSDL()
 {
-    nkfullScrean = false;
+    nkfullScrean = true;
     frame=0;
     avergeFrame=0;
     duzina=800;
@@ -17,7 +17,7 @@ NKSDL::NKSDL()
     {
         //Use OpenGL 3.1 core
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
-        SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
+        SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
         if(nkfullScrean){
             SDL_DisplayMode current;

@@ -17,6 +17,7 @@
 #include <GL/glu.h>
 
 #include "models/scena2.h"
+#include "models/scenaindex.h"
 #include "opengl/camera.h"
 class NKOpengl
 {
@@ -27,7 +28,7 @@ public:
 
     void render();
 private:
-    NKscena2 s2;
+    NKscenaIndex s2;
     NKCamera kamera;
 };
 

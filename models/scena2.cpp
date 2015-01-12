@@ -1,5 +1,5 @@
 
-#include "scena2.h"
+#include "models/scena2.h"
 
 
 NKscena2::NKscena2()

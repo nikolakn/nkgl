@@ -1,6 +1,6 @@
 TEMPLATE = app
 CONFIG -= console
-
+CONFIG += static
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     sdl/ltimer.cpp \
     opengl/opengl.cpp \
     opengl/camera.cpp \
-    sdl/nksdl.cpp
+    sdl/nksdl.cpp \
+    models/scenaindex.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -29,13 +30,16 @@ HEADERS += \
     sdl/ltimer.h \
     opengl/opengl.h \
     opengl/camera.h \
-    sdl/nksdl.h
+    sdl/nksdl.h \
+    models/scenaindex.h
 
 DISTFILES += \
     data/shaders/shader.frag \
     data/shaders/shaderm.frag \
     data/shaders/shader.vert \
     data/shaders/shaderm.vert \
-    LICENSE
+    LICENSE \
+    data/shaders/shaderindex.frag \
+    data/shaders/shaderindex.vert
 
 
