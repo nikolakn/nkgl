@@ -6,7 +6,7 @@ CONFIG -= qt
 
 QMAKE_CXXFLAGS += -std=c++11
 
-LIBS += -L/usr/local/lib -lSDL2 -lGLEW -lGL -lGLU
+LIBS += -L/usr/local/lib -lSDL2 -lGLEW -lGL -lGLU -lfreeimage
 
 SOURCES += main.cpp \
     models/kvadrat.cpp \
@@ -17,7 +17,9 @@ SOURCES += main.cpp \
     opengl/opengl.cpp \
     opengl/camera.cpp \
     sdl/nksdl.cpp \
-    models/scenaindex.cpp
+    models/scenaindex.cpp \
+    opengl/texture.cpp \
+    opengl/vertexBufferObject.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -31,7 +33,9 @@ HEADERS += \
     opengl/opengl.h \
     opengl/camera.h \
     sdl/nksdl.h \
-    models/scenaindex.h
+    models/scenaindex.h \
+    opengl/texture.h \
+    opengl/vertexBufferObject.h
 
 DISTFILES += \
     data/shaders/shader.frag \
