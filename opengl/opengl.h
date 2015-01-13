@@ -19,6 +19,7 @@
 #include "models/scena2.h"
 #include "models/scenaindex.h"
 #include "opengl/camera.h"
+
 class NKOpengl
 {
 public:

@@ -44,6 +44,10 @@ DISTFILES += \
     data/shaders/shaderm.vert \
     LICENSE \
     data/shaders/shaderindex.frag \
-    data/shaders/shaderindex.vert
+    data/shaders/shaderindex.vert \
+    data/shaders/shadertex.frag \
+    data/shaders/shadertex.vert \
+    data/textures/snow.jpg \
+    data/textures/golddiag.jpg
 
 

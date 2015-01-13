@@ -1,14 +1,5 @@
 #pragma once
 
-/********************************
-
-Class:	CShader
-
-Purpose:	Wraps OpenGL shader loading
-			and compiling.
-
-********************************/
-
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -48,14 +39,10 @@ private:
 	bool bLoaded; // Whether shader was loaded and compiled
 };
 
-/********************************
 
-Class:	CShaderProgram
+//Wraps OpenGL shader program
+//and make its usage easy.
 
-Purpose: Wraps OpenGL shader program
-		and make its usage easy.
-
-********************************/
 
 class CShaderProgram
 {
