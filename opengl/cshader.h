@@ -25,11 +25,11 @@ using namespace std;
 class CShader
 {
 public:
-	bool LoadShader(string sFile, int a_iType);
-	void DeleteShader();
+    bool loadShader(string sFile, int a_iType);
+    void deleteShader();
 
-	bool IsLoaded();
-    unsigned int GetShaderID();
+    bool isLoaded();
+    unsigned int getShaderID();
 
 	CShader();
 
@@ -47,15 +47,15 @@ private:
 class CShaderProgram
 {
 public:
-	void CreateProgram();
-	void DeleteProgram();
+    void createProgram();
+    void deleteProgram();
 
-	bool AddShaderToProgram(CShader* shShader);
-	bool LinkProgram();
+    bool addShaderToProgram(CShader* shShader);
+    bool linkProgram();
 
-	void UseProgram();
+    void useProgram();
 
-    unsigned int GetProgramID() {return uiProgram;}
+    unsigned int getProgramID() {return uiProgram;}
 
 	CShaderProgram();
 

@@ -57,26 +57,26 @@ NKscenaIndex::NKscenaIndex()
 
     // Load shaders and create shader program
 
-    shVertex.LoadShader("./data/shaders/shaderindex.vert", GL_VERTEX_SHADER);
-    shFragment.LoadShader("./data/shaders/shaderindex.frag", GL_FRAGMENT_SHADER);
+    shVertex.loadShader("./data/shaders/shaderindex.vert", GL_VERTEX_SHADER);
+    shFragment.loadShader("./data/shaders/shaderindex.frag", GL_FRAGMENT_SHADER);
 
-    spMain.CreateProgram();
-    spMain.AddShaderToProgram(&shVertex);
-    spMain.AddShaderToProgram(&shFragment);
+    spMain.createProgram();
+    spMain.addShaderToProgram(&shVertex);
+    spMain.addShaderToProgram(&shFragment);
 
-    spMain.LinkProgram();
+    spMain.linkProgram();
 
 
 }
 
 void NKscenaIndex::RenderScene(glm::mat4 *ProjectionMatrix)
 {
-    spMain.UseProgram();
+    spMain.useProgram();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glBindVertexArray(uiVAOHeightmap);
 
-    int iModelViewLoc = glGetUniformLocation(spMain.GetProgramID(), "modelViewMatrix");
-    int iProjectionLoc = glGetUniformLocation(spMain.GetProgramID(), "projectionMatrix");
+    int iModelViewLoc = glGetUniformLocation(spMain.getProgramID(), "modelViewMatrix");
+    int iProjectionLoc = glGetUniformLocation(spMain.getProgramID(), "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
 
     glm::mat4 mModelView = glm::lookAt(glm::vec3(0, 60, 30), glm::vec3(0, 0, 0), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -99,7 +99,7 @@ void NKscenaIndex::ReleaseScene()
     glDeleteBuffers(1, &uiVBOIndices);
     glDeleteVertexArrays(1, &uiVAOHeightmap);
 
-	shVertex.DeleteShader();
-	shFragment.DeleteShader();
+    shVertex.deleteShader();
+    shFragment.deleteShader();
 }
 

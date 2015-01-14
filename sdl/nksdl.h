@@ -15,7 +15,7 @@
 #endif
 
 
-#include <GL/glu.h>
+//#include <GL/glu.h>
 #include <iostream>
 #include <string>
 
@@ -34,11 +34,13 @@ public:
     void handleKeys(SDL_Event event, int x, int y);
     void loop();
 private:
+
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;
     //OpenGL context
     SDL_GLContext gContext;
     //Keep track of the frame count
+    NKOpengl *GL;
     int frame;
     int avergeFrame;
     //The frames per second timer

@@ -14,11 +14,10 @@
 #endif
 
 
-#include <GL/glu.h>
-
 #include "models/scena2.h"
 #include "models/scenaindex.h"
 #include "opengl/camera.h"
+#include "models/scenatex.h"
 
 class NKOpengl
 {
@@ -28,8 +27,15 @@ public:
     bool initGL(int w, int h);
 
     void render();
+
+    void moveLeft();
+    void moveRight();
+
+    void moveUp();
+    void moveDown();
 private:
     NKscenaIndex s2;
+    NKscenaTex texscen;
     NKCamera kamera;
 };
 

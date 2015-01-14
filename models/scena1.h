@@ -1,5 +1,4 @@
 #include <GL/glew.h>
-#include <GL/glu.h>
 #include <iostream>
 #include <string>
 #include "opengl/cshader.h"

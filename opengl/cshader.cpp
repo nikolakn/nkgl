@@ -9,7 +9,7 @@ CShader::CShader()
 }
 
 
-bool CShader::LoadShader(string sFile, int a_iType)
+bool CShader::loadShader(string sFile, int a_iType)
 {
 	FILE* fp = fopen(sFile.c_str(), "rt");
 	if(!fp)return false;
@@ -42,23 +42,23 @@ bool CShader::LoadShader(string sFile, int a_iType)
 
 
 
-bool CShader::IsLoaded()
+bool CShader::isLoaded()
 {
 	return bLoaded;
 }
 
 
 
-unsigned int CShader::GetShaderID()
+unsigned int CShader::getShaderID()
 {
 	return uiShader;
 }
 
 
 
-void CShader::DeleteShader()
+void CShader::deleteShader()
 {
-	if(!IsLoaded())return;
+    if(!isLoaded())return;
 	bLoaded = false;
 	glDeleteShader(uiShader);
 }
@@ -70,25 +70,25 @@ CShaderProgram::CShaderProgram()
 
 
 
-void CShaderProgram::CreateProgram()
+void CShaderProgram::createProgram()
 {
 	uiProgram = glCreateProgram();
 }
 
 
 
-bool CShaderProgram::AddShaderToProgram(CShader* shShader)
+bool CShaderProgram::addShaderToProgram(CShader* shShader)
 {
-	if(!shShader->IsLoaded())return false;
+    if(!shShader->isLoaded())return false;
 
-	glAttachShader(uiProgram, shShader->GetShaderID());
+    glAttachShader(uiProgram, shShader->getShaderID());
 
 	return true;
 }
 
 
 
-bool CShaderProgram::LinkProgram()
+bool CShaderProgram::linkProgram()
 {
 	glLinkProgram(uiProgram);
 	int iLinkStatus;
@@ -98,7 +98,7 @@ bool CShaderProgram::LinkProgram()
 }
 
 
-void CShaderProgram::DeleteProgram()
+void CShaderProgram::deleteProgram()
 {
 	if(!bLinked)return;
 	bLinked = false;
@@ -106,7 +106,7 @@ void CShaderProgram::DeleteProgram()
 }
 
 
-void CShaderProgram::UseProgram()
+void CShaderProgram::useProgram()
 {
 	if(bLinked)glUseProgram(uiProgram);
 }

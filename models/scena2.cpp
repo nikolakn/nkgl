@@ -63,18 +63,18 @@ NKscena2::NKscena2()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 
-    if(!shVertex.LoadShader("./data/shaders/shaderm.vert", GL_VERTEX_SHADER)){
+    if(!shVertex.loadShader("./data/shaders/shaderm.vert", GL_VERTEX_SHADER)){
         std::cout << "vertex shader greska" << std::endl;
     }
-    if(!shFragment.LoadShader("./data/shaders/shaderm.frag", GL_FRAGMENT_SHADER)){
+    if(!shFragment.loadShader("./data/shaders/shaderm.frag", GL_FRAGMENT_SHADER)){
          std::cout << "fragment shader greska" << std::endl;
     }
 
-    spMain.CreateProgram();
-    spMain.AddShaderToProgram(&shVertex);
-    spMain.AddShaderToProgram(&shFragment);
+    spMain.createProgram();
+    spMain.addShaderToProgram(&shVertex);
+    spMain.addShaderToProgram(&shFragment);
 
-    spMain.LinkProgram();
+    spMain.linkProgram();
 
 	glEnable(GL_DEPTH_TEST);
 	glClearDepth(1.0);
@@ -85,13 +85,13 @@ void NKscena2::RenderScene(glm::mat4 *ProjectionMatrix)
 {
 	// We just clear color
 
-	spMain.UseProgram();
+    spMain.useProgram();
 
     //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBindVertexArray(uiVAO[0]);
 
-    int iModelViewLoc = glGetUniformLocation(spMain.GetProgramID(), "modelViewMatrix");
-    int iProjectionLoc = glGetUniformLocation(spMain.GetProgramID(), "projectionMatrix");
+    int iModelViewLoc = glGetUniformLocation(spMain.getProgramID(), "modelViewMatrix");
+    int iProjectionLoc = glGetUniformLocation(spMain.getProgramID(), "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
 
 	glm::mat4 mModelView = glm::lookAt(glm::vec3(0, 15, 40), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -139,11 +139,11 @@ void NKscena2::RenderScene(glm::mat4 *ProjectionMatrix)
 
 void NKscena2::ReleaseScene()
 {
-	spMain.DeleteProgram();
+    spMain.deleteProgram();
 
 	glDeleteBuffers(2, uiVBO);
 	glDeleteVertexArrays(1, uiVAO);
 
-	shVertex.DeleteShader();
-	shFragment.DeleteShader();
+    shVertex.deleteShader();
+    shFragment.deleteShader();
 }

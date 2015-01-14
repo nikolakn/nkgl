@@ -2,7 +2,7 @@
 
 NKSDL::NKSDL()
 {
-    nkfullScrean = true;
+    nkfullScrean = false;
     frame=0;
     avergeFrame=0;
     duzina=800;
@@ -15,9 +15,10 @@ NKSDL::NKSDL()
     }
     else
     {
+
         //Use OpenGL 3.1 core
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
-        SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
+        SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
         if(nkfullScrean){
             SDL_DisplayMode current;
@@ -76,6 +77,12 @@ NKSDL::NKSDL()
             }
         }
     }
+    GL = new NKOpengl();
+    if( !GL->initGL(duzina,visina) )
+    {
+        cout <<"unable to initialize OpenGL!\n";
+        close();
+    }
 }
 
 NKSDL::~NKSDL()
@@ -91,6 +98,7 @@ void NKSDL::close()
         SDL_DestroyWindow( gWindow );
     gWindow = NULL;
     //Quit SDL subsystems
+    //delete GL;
     SDL_Quit();
     exit(0);
 }
@@ -109,16 +117,16 @@ void NKSDL::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __
             close();
             break;
         case SDLK_LEFT:
-            //alien_xvel = -1;
+            GL->moveLeft();
             break;
         case SDLK_RIGHT:
-            //alien_xvel =  1;
+            GL->moveRight();
             break;
         case SDLK_UP:
-            //alien_yvel = -1;
+             GL->moveUp();
             break;
         case SDLK_DOWN:
-            //alien_yvel =  1;
+             GL->moveDown();
             break;
         default:
             break;
@@ -153,12 +161,6 @@ void NKSDL::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __
 
 void NKSDL::loop()
 {
-    NKOpengl GL;
-    if( !GL.initGL(duzina,visina) )
-    {
-        cout <<"nable to initialize OpenGL!\n";
-        close();
-    }
     fpsTimer.start();
     //Main loop flag
     bool quit = false;
@@ -183,7 +185,7 @@ void NKSDL::loop()
             handleKeys( e, x, y );
         }
 
-        GL.render();
+        GL->render();
         SDL_GL_SwapWindow( gWindow );
         if(!nkfullScrean){
             frame++;

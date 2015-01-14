@@ -62,18 +62,18 @@ NKscena1::NKscena1()
 
 	// Load shaders and create shader program
 
-	if(!shVertex.LoadShader("./data/shaders/shader.vert", GL_VERTEX_SHADER)){
+    if(!shVertex.loadShader("./data/shaders/shader.vert", GL_VERTEX_SHADER)){
          std::cout << "vertex shader greska" << std::endl;
 	}
-	if(!shFragment.LoadShader("./data/shaders/shader.frag", GL_FRAGMENT_SHADER)){
+    if(!shFragment.loadShader("./data/shaders/shader.frag", GL_FRAGMENT_SHADER)){
          std::cout << "fragment shader greska" << std::endl;
 	}
 
-	spMain.CreateProgram();
-	spMain.AddShaderToProgram(&shVertex);
-	spMain.AddShaderToProgram(&shFragment);
+    spMain.createProgram();
+    spMain.addShaderToProgram(&shVertex);
+    spMain.addShaderToProgram(&shFragment);
 
-	spMain.LinkProgram();
+    spMain.linkProgram();
 	
 }
 
@@ -83,7 +83,7 @@ void NKscena1::RenderScene()
 {
 	// We just clear color
 	//glClear(GL_COLOR_BUFFER_BIT);
-	spMain.UseProgram();
+    spMain.useProgram();
 	glBindVertexArray(uiVAO[0]);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -94,8 +94,8 @@ void NKscena1::RenderScene()
 
 void NKscena1::ReleaseScene()
 {
-	spMain.DeleteProgram();
+    spMain.deleteProgram();
 
-	shVertex.DeleteShader();
-	shFragment.DeleteShader();
+    shVertex.deleteShader();
+    shFragment.deleteShader();
 }
