@@ -32,7 +32,7 @@ public:
     void moveRight();
     void moveUp();
     void moveDown();
-    void RenderScene(glm::mat4 *ProjectionMatrix);
+    void RenderScene(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
 	void ReleaseScene();
 	
 };

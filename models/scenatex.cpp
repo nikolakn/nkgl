@@ -146,8 +146,7 @@ void NKscenaTex::moveDown()
 }
 
 
-void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
-{
+void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
     glEnable(GL_DEPTH_TEST);
     // Accept fragment if it closer to the camera than the former one
     glDepthFunc(GL_LESS);
@@ -157,7 +156,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
     int iProjectionLoc = glGetUniformLocation(spMain.getProgramID(), "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
 
-    glm::mat4 mModelView = glm::lookAt(glm::vec3(0, 12, 27), glm::vec3(0, 0, 0), glm::vec3(0.0f, 1.0f, 0.0f));
+    //glm::mat4 mModelView = glm::lookAt(glm::vec3(0, 12, 27), glm::vec3(0, 0, 0), glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 mCurrent;
 
     glBindVertexArray(uiVAO);
@@ -174,7 +173,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
 
     // Rendering of pyramid
 
-    mCurrent = glm::translate(mModelView, glm::vec3(8.0f, 0.0f, 0.0f));
+    mCurrent = glm::translate(*mModelView, glm::vec3(8.0f, 0.0f, 0.0f));
     mCurrent = glm::scale(mCurrent, glm::vec3(10.0f, 10.0f, 10.0f));
     mCurrent = glm::rotate(mCurrent, fRotationAnglePyramid*PIover180, glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
@@ -183,7 +182,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
 
     // Rendering of cube
 
-    mCurrent = glm::translate(mModelView, glm::vec3(-8.0f, 0.0f, 0.0f));
+    mCurrent = glm::translate(*mModelView, glm::vec3(-8.0f, 0.0f, 0.0f));
     mCurrent = glm::scale(mCurrent, glm::vec3(10.0f, 10.0f, 10.0f));
     mCurrent = glm::rotate(mCurrent, fRotationAngleCube*PIover180, glm::vec3(1.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
@@ -193,13 +192,16 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
 
     tSnow.bindTexture();
 
-    glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mModelView));
+    glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(*mModelView));
     glDrawArrays(GL_TRIANGLES, 48, 6);
 
     // A little interaction for user
    // tGold.setFiltering((tGold.getMagnificationFilter()+1)%2, tGold.getMinificationFilter());
    // tSnow.setFiltering((tSnow.getMagnificationFilter()+1)%2, tSnow.getMinificationFilter());
 
+    //int iNewMinFilter = tSnow.getMinificationFilter() == TEXTURE_FILTER_MIN_TRILINEAR ? TEXTURE_FILTER_MIN_NEAREST : tSnow.getMinificationFilter()+1;
+   // tSnow.setFiltering(tSnow.getMagnificationFilter(), iNewMinFilter);
+   // tGold.setFiltering(tGold.getMagnificationFilter(), iNewMinFilter);
 }
 
 

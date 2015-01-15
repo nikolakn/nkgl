@@ -47,18 +47,20 @@ void NKOpengl::render(){
     //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     //kvadrat1->render();
     //s2.RenderScene(kamera.getProjectionMat());
-    texscen.RenderScene(kamera.getProjectionMat());
+    texscen.RenderScene(kamera.getProjectionMat(),kamera.modelView());
     //kocka1.RenderScene(kamera.getProjectionMat());
 }
 
 void NKOpengl::moveLeft()
 {
-    texscen.moveLeft();
+    //texscen.moveLeft();
+    kamera.setX(kamera.getX()-0.5);
 }
 
 void NKOpengl::moveRight()
 {
-     texscen.moveRight();
+    // texscen.moveRight();
+    kamera.setX(kamera.getX()+0.5);
 }
 void NKOpengl::moveUp()
 {
