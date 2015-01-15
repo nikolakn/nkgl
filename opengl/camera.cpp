@@ -11,6 +11,9 @@ NKCamera::NKCamera()
     a=0.0;
     b=1.0;
     g=0.0;
+    m_position = glm::vec3(x, y, z);
+    m_direction = glm::vec3(xo, yo, zo);
+    m_up = glm::vec3(a, b, g);
     setlookAt();
 }
 
@@ -118,9 +121,22 @@ void NKCamera::setModelView(const glm::mat4 &modelView)
 {
     mModelView = modelView;
 }
+void NKCamera::rotate(float amount)
+{
+    mModelView = glm::rotate(mModelView, amount, glm::vec3(0.0f, 1.0f, 0.0f));
 
+}
+void NKCamera::updateRot()
+{
+    mModelView = glm::lookAt(m_position, m_position + m_direction, m_up);
+}
+void NKCamera::translate(glm::vec3& direction)
+{
+    m_position += direction;
+}
 void NKCamera::setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
 {
     mProjection = glm::perspective(fFOV, fAspectRatio, fNear, fFar);
 }
+
 

@@ -54,13 +54,16 @@ void NKOpengl::render(){
 void NKOpengl::moveLeft()
 {
     //texscen.moveLeft();
-    kamera.setX(kamera.getX()-0.5);
+    //kamera.setX(kamera.getX()-0.5);
+    kamera.rotate(0.05f);
+
 }
 
 void NKOpengl::moveRight()
 {
     // texscen.moveRight();
-    kamera.setX(kamera.getX()+0.5);
+    //kamera.setX(kamera.getX()+0.5);
+    kamera.rotate(-0.05f);
 }
 void NKOpengl::moveUp()
 {

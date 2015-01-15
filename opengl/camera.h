@@ -47,12 +47,18 @@ public:
     glm::mat4* modelView() const;
     void setModelView(const glm::mat4 &modelView);
 
+    void updateRot();
+    void rotate(float amount);
+    void translate(glm::vec3 &direction);
 private:
     glm::mat4 mProjection;
     glm::mat4 mModelView;
     float x, y, z; //position
     float a,b,g;   //angles
     float xo, yo, zo; //lookat
+    glm::vec3 m_position;
+    glm::vec3 m_direction;
+    glm::vec3 m_up ;
 };
 
 #endif // CAMERA_H
