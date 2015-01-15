@@ -88,7 +88,7 @@ NKSDL::NKSDL()
 
 NKSDL::~NKSDL()
 {
-
+    close();
 }
 
 
@@ -99,7 +99,7 @@ void NKSDL::close()
         SDL_DestroyWindow( gWindow );
     gWindow = NULL;
     //Quit SDL subsystems
-    //delete GL;
+    delete GL;
     SDL_Quit();
     exit(0);
 }

@@ -13,12 +13,6 @@ NKOpengl::~NKOpengl()
 bool  NKOpengl::initGL(int duzina, int visina)
 {
 
-     //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-    //glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-    //Initialize Modelview Matrix
-    //glMatrixMode( GL_MODELVIEW );
-    //glLoadIdentity();
     kamera.setProjection3D(45.0f, (float)duzina/(float)visina , 0.001f, 1000.0f);
     //glEnable( GL_LINE_SMOOTH );
     //glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
@@ -27,12 +21,11 @@ bool  NKOpengl::initGL(int duzina, int visina)
     //glFrontFace( GL_CW );
     //glEnable( GL_CULL_FACE );
 
-    //glClearStencil(0x0);
-    //glEnable(GL_STENCIL_TEST);
+
     glClearColor( 0.f, 50.f, 200.f, 1.f );
     glEnable(GL_DEPTH_TEST);
-   glDepthFunc(GL_LESS);
-    //glEnable(GL_TEXTURE_2D);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_TEXTURE_2D);
     //glEnable(GL_BLEND);
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     //glEnable(GL_CULL_FACE);
