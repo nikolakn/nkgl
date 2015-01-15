@@ -54,7 +54,8 @@ NKscenaIndex::NKscenaIndex()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(iIndices), iIndices, GL_STATIC_DRAW);
     glEnable(GL_PRIMITIVE_RESTART);
     glPrimitiveRestartIndex(HM_SIZE_X*HM_SIZE_Y);
-
+    glDisable(GL_PRIMITIVE_RESTART);
+    glDisableVertexAttribArray(0);
     // Load shaders and create shader program
 
     shVertex.loadShader("./data/shaders/shaderindex.vert", GL_VERTEX_SHADER);
@@ -72,7 +73,6 @@ NKscenaIndex::NKscenaIndex()
 void NKscenaIndex::RenderScene(glm::mat4 *ProjectionMatrix)
 {
     spMain.useProgram();
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glBindVertexArray(uiVAOHeightmap);
 
     int iModelViewLoc = glGetUniformLocation(spMain.getProgramID(), "modelViewMatrix");
@@ -89,7 +89,7 @@ void NKscenaIndex::RenderScene(glm::mat4 *ProjectionMatrix)
 
     fRotationAngle += 1.0f;
 
-
+    glBindVertexArray(0);
 }
 
 

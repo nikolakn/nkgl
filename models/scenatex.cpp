@@ -182,7 +182,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
     glDrawArrays(GL_TRIANGLES, 36, 12);
 
     // Rendering of cube
-/*
+
     mCurrent = glm::translate(mModelView, glm::vec3(-8.0f, 0.0f, 0.0f));
     mCurrent = glm::scale(mCurrent, glm::vec3(10.0f, 10.0f, 10.0f));
     mCurrent = glm::rotate(mCurrent, fRotationAngleCube*PIover180, glm::vec3(1.0f, 1.0f, 0.0f));
@@ -190,7 +190,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
     // Render ground
-*/
+
     tSnow.bindTexture();
 
     glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mModelView));
@@ -200,9 +200,6 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix)
    // tGold.setFiltering((tGold.getMagnificationFilter()+1)%2, tGold.getMinificationFilter());
    // tSnow.setFiltering((tSnow.getMagnificationFilter()+1)%2, tSnow.getMinificationFilter());
 
-    //int iNewMinFilter = tSnow.getMinificationFilter() == TEXTURE_FILTER_MIN_TRILINEAR ? TEXTURE_FILTER_MIN_NEAREST : tSnow.getMinificationFilter()+1;
-   // tSnow.setFiltering(tSnow.getMagnificationFilter(), iNewMinFilter);
-   // tGold.setFiltering(tGold.getMagnificationFilter(), iNewMinFilter);
 }
 
 

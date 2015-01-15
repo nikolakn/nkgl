@@ -31,7 +31,7 @@ bool  NKOpengl::initGL(int duzina, int visina)
     //glEnable(GL_STENCIL_TEST);
     glClearColor( 0.f, 50.f, 200.f, 1.f );
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
+   glDepthFunc(GL_LESS);
     //glEnable(GL_TEXTURE_2D);
     //glEnable(GL_BLEND);
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -48,6 +48,7 @@ void NKOpengl::render(){
     //kvadrat1->render();
     //s2.RenderScene(kamera.getProjectionMat());
     texscen.RenderScene(kamera.getProjectionMat());
+    //kocka1.RenderScene(kamera.getProjectionMat());
 }
 
 void NKOpengl::moveLeft()

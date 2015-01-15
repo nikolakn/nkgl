@@ -18,6 +18,7 @@
 #include "models/scenaindex.h"
 #include "opengl/camera.h"
 #include "models/scenatex.h"
+#include "models/nkkocka.h"
 
 class NKOpengl
 {
@@ -34,9 +35,10 @@ public:
     void moveUp();
     void moveDown();
 private:
-    NKscenaIndex s2;
+    //NKscenaIndex s2;
     NKscenaTex texscen;
     NKCamera kamera;
+    //NKkocka kocka1;
 };
 
 #endif // OPENGL_H
