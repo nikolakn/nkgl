@@ -38,7 +38,7 @@ private:
     //NKscenaIndex s2;
     NKscenaTex texscen;
     NKCamera kamera;
-    //NKkocka kocka1;
+
 };
 
 #endif // OPENGL_H

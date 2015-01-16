@@ -14,13 +14,6 @@ bool  NKOpengl::initGL(int duzina, int visina)
 {
 
     kamera.setProjection3D(45.0f, (float)duzina/(float)visina , 0.001f, 1000.0f);
-    //glEnable( GL_LINE_SMOOTH );
-    //glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-    //glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-    //glCullFace( GL_FRONT);
-    //glFrontFace( GL_CW );
-    //glEnable( GL_CULL_FACE );
-
 
     glClearColor( 0.f, 50.f, 200.f, 1.f );
     glEnable(GL_DEPTH_TEST);
@@ -36,12 +29,8 @@ bool  NKOpengl::initGL(int duzina, int visina)
 
 void NKOpengl::render(){
 
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //kvadrat1->render();
-    //s2.RenderScene(kamera.getProjectionMat());
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );;
     texscen.RenderScene(kamera.getProjectionMat(),kamera.modelView());
-    //kocka1.RenderScene(kamera.getProjectionMat());
 }
 
 void NKOpengl::moveLeft()

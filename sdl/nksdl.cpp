@@ -3,10 +3,10 @@
 NKSDL::NKSDL()
 {
     nkfullScrean = false;
-    frame=0;
-    avergeFrame=0;
-    duzina=800;
-    visina=600;
+    frame = 0;
+    avergeFrame = 0;
+    duzina = 800;
+    visina = 600;
     //Initialize SDL
     if( SDL_Init( SDL_INIT_EVERYTHING) < 0 )
     {
@@ -16,7 +16,7 @@ NKSDL::NKSDL()
     else
     {
 
-        //Use OpenGL 3.1 core
+        //Use OpenGL 3.3 core
         //SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES,4);
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
@@ -30,7 +30,6 @@ NKSDL::NKSDL()
                 if(should_be_zero != 0)
                     // In case of error...
                     SDL_Log("Could not get display mode for video display #%d: %s", i, SDL_GetError());
-
                 else
                     // On success, print the current display mode.
                     SDL_Log("Display #%d: current display mode is %dx%dpx @ %dhz. \n", i, current.w, current.h, current.refresh_rate);
@@ -90,7 +89,6 @@ NKSDL::~NKSDL()
 {
     close();
 }
-
 
 void NKSDL::close()
 {
