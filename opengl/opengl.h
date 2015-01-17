@@ -20,6 +20,9 @@
 #include "models/scenatex.h"
 #include "models/nkkocka.h"
 
+#include <freetype2/ft2build.h>
+#include FT_FREETYPE_H
+
 class NKOpengl
 {
 public:
@@ -38,6 +41,7 @@ private:
     //NKscenaIndex s2;
     NKscenaTex texscen;
     NKCamera kamera;
+    FT_Face face;
 
 };
 

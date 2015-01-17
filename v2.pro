@@ -5,8 +5,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 QMAKE_CXXFLAGS += -std=c++11
-
-LIBS += -L/usr/local/lib -lSDL2 -lGLEW -lGL -lfreeimage
+INCLUDEPATH += /usr/include/freetype2/
+LIBS += -L/usr/local/lib -lSDL2 -lGLEW -lGL -lfreeimage -lfreetype
 
 SOURCES += main.cpp \
     models/kvadrat.cpp \

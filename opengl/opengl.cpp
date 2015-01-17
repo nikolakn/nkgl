@@ -3,6 +3,15 @@
 NKOpengl::NKOpengl()
 {
     //s2 = new scena2();
+
+    FT_Library ft;
+    if(FT_Init_FreeType(&ft)) {
+      fprintf(stderr, "Could not init freetype library\n");
+    }
+    if(FT_New_Face(ft, "FreeSans.ttf", 0, &face)) {
+      fprintf(stderr, "Could not open font\n");
+    }
+
 }
 
 NKOpengl::~NKOpengl()
@@ -23,6 +32,10 @@ bool  NKOpengl::initGL(int duzina, int visina)
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     //glEnable(GL_CULL_FACE);
     //glCullFace(GL_FRONT);
+    FT_Set_Pixel_Sizes(face, 0, 48);
+    if(FT_Load_Char(face, 'X', FT_LOAD_RENDER)) {
+      fprintf(stderr, "Could not load character 'X'\n");
+    }
     return true;
 }
 
