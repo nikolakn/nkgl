@@ -100,9 +100,14 @@ NKscenaTex::NKscenaTex()
 
     // Load shaders and create shader program
 
-    shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER);
-    shFragment.loadShader("./data/shaders/shadertex.frag", GL_FRAGMENT_SHADER);
+    //shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER);
 
+    if(!shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER)){
+         std::cout<<"grska shadertex.vert" << std::endl;
+    }
+    if(!shFragment.loadShader("./data/shaders/shadertex.frag", GL_FRAGMENT_SHADER)){
+         std::cout<<"grska shadertex.frag" << std::endl;
+    }
     spMain.createProgram();
     spMain.addShaderToProgram(&shVertex);
     spMain.addShaderToProgram(&shFragment);
@@ -116,7 +121,7 @@ NKscenaTex::NKscenaTex()
 
     tSnow.loadTexture2D("./data/textures/snow.jpg", true);
     tSnow.setFiltering(TEXTURE_FILTER_MAG_BILINEAR, TEXTURE_FILTER_MIN_BILINEAR_MIPMAP);
-
+    glBindVertexArray(0);
 
 }
 
@@ -147,11 +152,12 @@ void NKscenaTex::moveDown()
 
 
 void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
-    glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_DEPTH_TEST);
     // Accept fragment if it closer to the camera than the former one
-    glDepthFunc(GL_LESS);
+    //glDepthFunc(GL_LESS);
     spMain.useProgram();
-
+    //glEnable(GL_DEPTH_TEST);
+    //glDepthFunc(GL_LESS);
     int iModelViewLoc = glGetUniformLocation(spMain.getProgramID(), "modelViewMatrix");
     int iProjectionLoc = glGetUniformLocation(spMain.getProgramID(), "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
@@ -168,8 +174,6 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
     glUniform1i(iSamplerLoc, 0);
 
     tGold.bindTexture(0);
-
-
 
     // Rendering of pyramid
 
@@ -190,7 +194,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
     glDrawArrays(GL_TRIANGLES, 0, 36);
     // Render ground
 
-    tSnow.bindTexture();
+    tSnow.bindTexture(0);
 
     glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(*mModelView));
     glDrawArrays(GL_TRIANGLES, 48, 6);
@@ -202,6 +206,9 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
     //int iNewMinFilter = tSnow.getMinificationFilter() == TEXTURE_FILTER_MIN_TRILINEAR ? TEXTURE_FILTER_MIN_NEAREST : tSnow.getMinificationFilter()+1;
    // tSnow.setFiltering(tSnow.getMagnificationFilter(), iNewMinFilter);
    // tGold.setFiltering(tGold.getMagnificationFilter(), iNewMinFilter);
+    //glBindTexture(GL_TEXTURE_2D,0);
+   glBindVertexArray(0);
+   glUseProgram(0);
 }
 
 

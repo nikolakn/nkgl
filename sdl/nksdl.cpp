@@ -19,8 +19,8 @@ NKSDL::NKSDL()
         //Use OpenGL 3.3 core
         //SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES,4);
         SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
-        SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
-        SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
+        SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 0);
+        SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);
         if(nkfullScrean){
             SDL_DisplayMode current;
             for(int i = 0; i < SDL_GetNumVideoDisplays(); ++i){

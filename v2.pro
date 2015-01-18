@@ -22,7 +22,9 @@ SOURCES += main.cpp \
     opengl/vertexBufferObject.cpp \
     models/scenatex.cpp \
     models/nkkocka.cpp \
-    opengl/shader.cpp
+    opengl/shader.cpp \
+    opengl/nkgltext.cpp \
+    opengl/shader_utils.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -41,7 +43,9 @@ HEADERS += \
     opengl/vertexBufferObject.h \
     models/scenatex.h \
     models/nkkocka.h \
-    opengl/shader.hpp
+    opengl/shader.hpp \
+    opengl/nkgltext.h \
+    opengl/shader_utils.h
 
 DISTFILES += \
     data/shaders/shader.frag \
@@ -56,6 +60,8 @@ DISTFILES += \
     data/textures/snow.jpg \
     data/textures/golddiag.jpg \
     data/shaders/TransformVertexShader.vertexshader \
-    data/shaders/ColorFragmentShader.fragmentshader
+    data/shaders/ColorFragmentShader.fragmentshader \
+    data/shaders/text.f.glsl \
+    data/shaders/text.v.glsl
 
 
