@@ -2,7 +2,7 @@
 
 NKSDL::NKSDL()
 {
-    nkfullScrean = true;
+    nkfullScrean = false;
     frame = 0;
     avergeFrame = 0;
     duzina = 800;

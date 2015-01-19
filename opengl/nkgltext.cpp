@@ -84,7 +84,7 @@ void NKGLText::render()
 
     /* Effects of alignment */
     render_text("The Quick Brown Fox Jumps Over The Lazy Dog", a48, -1 + 8 * sx, 1 - 50 * sy, sx, sy);
-    render_text("123", a48, -1 + 10 * sx, 1 - 100 * sy, sx, sy);
+    render_text("Nikola 123", a24, -1 + 10 * sx, 1 - 100 * sy, sx, sy);
 
     /* Scaling the texture versus changing the font size */
     //render_text("The Small", a48, -1 + 8 * sx, 1 - 170 * sy, sx*1.8 , sy *1.8);
@@ -137,21 +137,22 @@ void NKGLText::render_text(const char *text, atlas * a, float x, float y, float 
         y += a->c[*p].ay * sy;
 
         /* Skip glyphs that have no pixels */
-        if (!w || !h)
+        if (!w || !h){
             continue;
+        }
 
-        coords[c++] = (point) {x2, -y2, a->c[*p].tx, a->c[*p].ty};
-        coords[c++] = (point) {x2 + w, -y2, a->c[*p].tx + a->c[*p].bw / a->w, a->c[*p].ty};
+        coords[c++] = (point){x2, -y2, a->c[*p].tx, a->c[*p].ty};
+        coords[c++] = (point){x2 + w, -y2, a->c[*p].tx + a->c[*p].bw / a->w, a->c[*p].ty};
         coords[c++] = (point) {x2, -y2 - h, a->c[*p].tx, a->c[*p].ty + a->c[*p].bh / a->h};
         coords[c++] = (point) {x2 + w, -y2, a->c[*p].tx + a->c[*p].bw / a->w, a->c[*p].ty};
         coords[c++] = (point) {x2, -y2 - h, a->c[*p].tx, a->c[*p].ty + a->c[*p].bh / a->h};
         coords[c++] = (point) {x2 + w, -y2 - h, a->c[*p].tx + a->c[*p].bw / a->w, a->c[*p].ty + a->c[*p].bh / a->h};
-}
+    }
 
-/* Draw all the character on the screen in one go */
-glBufferData(GL_ARRAY_BUFFER, sizeof coords, coords, GL_DYNAMIC_DRAW);
-glDrawArrays(GL_TRIANGLES, 0, c);
+    /* Draw all the character on the screen in one go */
+    glBufferData(GL_ARRAY_BUFFER, sizeof coords, coords, GL_DYNAMIC_DRAW);
+    glDrawArrays(GL_TRIANGLES, 0, c);
 
-glDisableVertexAttribArray(attribute_coord);
+    glDisableVertexAttribArray(attribute_coord);
 
 }

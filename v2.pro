@@ -62,6 +62,8 @@ DISTFILES += \
     data/shaders/TransformVertexShader.vertexshader \
     data/shaders/ColorFragmentShader.fragmentshader \
     data/shaders/text.f.glsl \
-    data/shaders/text.v.glsl
+    data/shaders/text.v.glsl \
+    data/font/FreeSans.ttf \
+    README.md
 
 
