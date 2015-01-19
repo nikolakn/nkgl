@@ -48,6 +48,7 @@ NKSDL::NKSDL()
             cout << "Window could not be created! SDL Error: " << SDL_GetError() << endl;
             close();
         }
+
         else
         {
             //Create context

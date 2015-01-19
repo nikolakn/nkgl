@@ -2,7 +2,6 @@
 
 NKOpengl::NKOpengl()
 {
-    //s2 = new scena2();
 
 }
 
@@ -13,7 +12,8 @@ NKOpengl::~NKOpengl()
 
 bool  NKOpengl::initGL(int duzina, int visina)
 {
-
+    m_duzina = duzina;
+    m_visina = visina;
     kamera.setProjection3D(45.0f, (float)duzina/(float)visina , 0.001f, 1000.0f);
 
     glClearColor( 0.f, 50.f, 200.f, 1.f );
@@ -27,7 +27,10 @@ bool  NKOpengl::initGL(int duzina, int visina)
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     //glEnable(GL_CULL_FACE);
     //glCullFace(GL_FRONT);
-    nktext.Init();
+
+    nktext.Init(duzina,visina);
+
+
     return true;
 }
 
@@ -62,3 +65,5 @@ void NKOpengl::moveDown()
 {
      texscen.moveDown();
 }
+
+

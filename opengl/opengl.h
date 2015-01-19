@@ -36,12 +36,15 @@ public:
 
     void moveUp();
     void moveDown();
+    void RenderText(std::string message, SDL_Color color, int x, int y, int size);
 private:
     //NKscenaIndex s2;
     NKscenaTex texscen;
     NKCamera kamera;
     NKGLText nktext;
 
+    int m_duzina;
+    int m_visina;
 };
 
 #endif // OPENGL_H

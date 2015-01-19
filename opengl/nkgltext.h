@@ -147,7 +147,7 @@ public:
 
     NKGLText();
     ~NKGLText();
-    int Init();
+    int Init(int w, int h);
     void render();
     //void render_text(const char *text, float x, float y, float sx, float sy);
     //void display();
@@ -169,6 +169,9 @@ private:
     atlas *a48;
     atlas *a24;
     atlas *a12;
+
+    int m_duzina;
+    int m_visina;
 
 };
 

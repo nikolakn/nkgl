@@ -12,8 +12,10 @@ NKGLText::~NKGLText()
     glDeleteProgram(program);
 }
 
-int NKGLText::Init()
+int NKGLText::Init(int w, int h)
 {
+    m_duzina=w;
+    m_visina=h;
     fontfilename = "./data/font/FreeSans.ttf";
     face = new FT_Face();
     ft = new FT_Library();
@@ -56,8 +58,8 @@ int NKGLText::Init()
 
 void NKGLText::render()
 {
-    float sx = 2.0 / 1280.0f;
-    float sy = 2.0 /800.0f;
+    float sx = 2.0 / m_duzina;
+    float sy = 2.0 / m_visina;
 
     glUseProgram(program);
     glDisable(GL_DEPTH_TEST);
@@ -82,7 +84,7 @@ void NKGLText::render()
 
     /* Effects of alignment */
     render_text("The Quick Brown Fox Jumps Over The Lazy Dog", a48, -1 + 8 * sx, 1 - 50 * sy, sx, sy);
-    render_text("The Misaligned Fox Jumps Over The Lazy Dog", a48, -1 + 10 * sx, 1 - 100 * sy, sx, sy);
+    render_text("123", a48, -1 + 10 * sx, 1 - 100 * sy, sx, sy);
 
     /* Scaling the texture versus changing the font size */
     //render_text("The Small", a48, -1 + 8 * sx, 1 - 170 * sy, sx*1.8 , sy *1.8);
