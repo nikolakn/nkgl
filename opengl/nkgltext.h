@@ -57,6 +57,7 @@ struct atlas {
 
          memset(c, 0, sizeof c);
 
+
         /* Find minimum size for a texture holding all visible ASCII characters */
         for (int i = 32; i < 128; i++) {
             if (FT_Load_Char(*face, i, FT_LOAD_RENDER)) {
@@ -76,17 +77,25 @@ struct atlas {
         w = std::max(w, roww);
         h += rowh;
 
+        unsigned char *bb=new unsigned char[w*h*sizeof(unsigned char)*4];
+        for(unsigned int o=0;o<(w*h*sizeof(unsigned char)*4) ;o++)
+            bb[o]=0;
         /* Create a texture that will be used to hold all ASCII glyphs */
+        //glClear(GL_COLOR_BUFFER_BIT);
+        //glBindTexture(GL_TEXTURE_2D,0);
         glActiveTexture(GL_TEXTURE0);
         glGenTextures(1, &tex);
         glBindTexture(GL_TEXTURE_2D, tex);
         glUniform1i(uniform_tex, 0);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, 0);
 
-        /* We require 1 byte alignment when uploading texture data */
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,  GL_RED, GL_UNSIGNED_BYTE, bb);
+
+        //glTexStorage2D (GL_TEXTURE_2D, 1, GL_RGBA8, w, h);
+//tyjhtyjytj
+        //glTexSubImage2D(GL_TEXTURE_2D,0,0,0,w,h,GL_RGBA,GL_UNSIGNED_BYTE,0);
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
         /* Clamping to edges is important to prevent artifacts when scaling */
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -94,6 +103,9 @@ struct atlas {
         /* Linear filtering usually looks best for text */
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+
 
         /* Paste all glyph bitmaps into the texture, remembering the offset */
         int ox = 0;

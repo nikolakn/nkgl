@@ -84,10 +84,10 @@ void NKGLText::render()
 
     /* Effects of alignment */
     render_text("The Quick Brown Fox Jumps Over The Lazy Dog", a48, -1 + 8 * sx, 1 - 50 * sy, sx, sy);
-    render_text("Nikola 123", a24, -1 + 10 * sx, 1 - 100 * sy, sx, sy);
+    render_text("Nikola 123", a48, -1 + 10 * sx, 1 - 130 * sy, sx*2, sy*2);
 
     /* Scaling the texture versus changing the font size */
-    //render_text("The Small", a48, -1 + 8 * sx, 1 - 170 * sy, sx*1.8 , sy *1.8);
+    render_text("The Small", a48, -1 + 8 * sx, 1 - 170 * sy, sx*0.4 , sy *0.4);
     render_text("The Small Font Sized Fox Jumps Over The Lazy Dog", a24, -1 + 8 * sx, 1 - 200 * sy, sx, sy);
     //render_text("The Tiny Texture Scaled Fox Jumps Over The Lazy Dog", a48, -1 + 8 * sx, 1 - 235 * sy, sx * 0.25, sy * 0.25);
     render_text("The Tiny Font Sized Fox Jumps Over The Lazy Dog", a12, -1 + 8 * sx, 1 - 250 * sy, sx, sy);
@@ -115,6 +115,7 @@ void NKGLText::render_text(const char *text, atlas * a, float x, float y, float 
     /* Use the texture containing the atlas */
     glBindTexture(GL_TEXTURE_2D, a->tex);
     glUniform1i(uniform_tex, 0);
+
 
     /* Set up the VBO for our vertex data */
     glEnableVertexAttribArray(attribute_coord);
@@ -150,9 +151,11 @@ void NKGLText::render_text(const char *text, atlas * a, float x, float y, float 
     }
 
     /* Draw all the character on the screen in one go */
+
     glBufferData(GL_ARRAY_BUFFER, sizeof coords, coords, GL_DYNAMIC_DRAW);
     glDrawArrays(GL_TRIANGLES, 0, c);
 
+     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glDisableVertexAttribArray(attribute_coord);
 
 }
