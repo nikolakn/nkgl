@@ -103,10 +103,10 @@ NKscenaTex::NKscenaTex()
     //shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER);
 
     if(!shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER)){
-         std::cout<<"grska shadertex.vert" << std::endl;
+        std::cout<<"grska shadertex.vert" << std::endl;
     }
     if(!shFragment.loadShader("./data/shaders/shadertex.frag", GL_FRAGMENT_SHADER)){
-         std::cout<<"grska shadertex.frag" << std::endl;
+        std::cout<<"grska shadertex.frag" << std::endl;
     }
     spMain.createProgram();
     spMain.addShaderToProgram(&shVertex);
@@ -128,14 +128,14 @@ NKscenaTex::NKscenaTex()
 void NKscenaTex::moveLeft()
 {
     //fPyramidRotationSpeed -= 2.0f;
- fRotationAnglePyramid += 4.0f;
+    fRotationAnglePyramid += 4.0f;
     fRotationAnglePyramid += fPyramidRotationSpeed;
 }
 
 void NKscenaTex::moveRight()
 {
     //fPyramidRotationSpeed += 2.0f;
-     fRotationAnglePyramid -= 4.0f;
+    fRotationAnglePyramid -= 4.0f;
 }
 
 void NKscenaTex::moveUp()
@@ -200,15 +200,16 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
     glDrawArrays(GL_TRIANGLES, 48, 6);
 
     // A little interaction for user
-   // tGold.setFiltering((tGold.getMagnificationFilter()+1)%2, tGold.getMinificationFilter());
-   // tSnow.setFiltering((tSnow.getMagnificationFilter()+1)%2, tSnow.getMinificationFilter());
+    // tGold.setFiltering((tGold.getMagnificationFilter()+1)%2, tGold.getMinificationFilter());
+    // tSnow.setFiltering((tSnow.getMagnificationFilter()+1)%2, tSnow.getMinificationFilter());
 
     //int iNewMinFilter = tSnow.getMinificationFilter() == TEXTURE_FILTER_MIN_TRILINEAR ? TEXTURE_FILTER_MIN_NEAREST : tSnow.getMinificationFilter()+1;
-   // tSnow.setFiltering(tSnow.getMagnificationFilter(), iNewMinFilter);
-   // tGold.setFiltering(tGold.getMagnificationFilter(), iNewMinFilter);
-    //glBindTexture(GL_TEXTURE_2D,0);
-   glBindVertexArray(0);
-   glUseProgram(0);
+    // tSnow.setFiltering(tSnow.getMagnificationFilter(), iNewMinFilter);
+    // tGold.setFiltering(tGold.getMagnificationFilter(), iNewMinFilter);
+
+    glBindSampler(0,0);
+    glBindVertexArray(0);
+    glUseProgram(0);
 }
 
 
