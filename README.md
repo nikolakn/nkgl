@@ -7,7 +7,7 @@ repository for my OpenGL 3.3 learning
  QT creator as IDE and project file to compile with qmake, no need for qt sdk
  
 build:
-qmake
+qmake;
 make
 
 tested:

@@ -77,9 +77,9 @@ struct atlas {
         w = std::max(w, roww);
         h += rowh;
 
-        unsigned char *bb=new unsigned char[w*h*sizeof(unsigned char)*4];
-        for(unsigned int o=0;o<(w*h*sizeof(unsigned char)*4) ;o++)
-            bb[o]=0;
+
+        //for(unsigned int o=0;o<(w*h*sizeof(unsigned char)*4) ;o++)
+        //   bb[o]=0;
         /* Create a texture that will be used to hold all ASCII glyphs */
         //glClear(GL_COLOR_BUFFER_BIT);
         //glBindTexture(GL_TEXTURE_2D,0);
@@ -88,10 +88,10 @@ struct atlas {
         glBindTexture(GL_TEXTURE_2D, tex);
         glUniform1i(uniform_tex, 0);
 
-
-
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,  GL_RED, GL_UNSIGNED_BYTE, bb);
-
+        unsigned char *pixels=new unsigned char[w*h];
+        memset(pixels, 0, sizeof(*pixels));
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,  GL_RED, GL_UNSIGNED_BYTE, pixels);
+        delete pixels;
         //glTexStorage2D (GL_TEXTURE_2D, 1, GL_RGBA8, w, h);
 //tyjhtyjytj
         //glTexSubImage2D(GL_TEXTURE_2D,0,0,0,w,h,GL_RGBA,GL_UNSIGNED_BYTE,0);
