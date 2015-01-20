@@ -38,7 +38,7 @@ bool  NKOpengl::initGL(int duzina, int visina)
 void NKOpengl::render(){
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    texscen.RenderScene(kamera.getProjectionMat(),kamera.modelView());
+    texscen.render(kamera.getProjectionMat(),kamera.modelView());
     nktext.render();
 }
 

@@ -93,7 +93,6 @@ struct atlas {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,  GL_RED, GL_UNSIGNED_BYTE, pixels);
         delete pixels;
         //glTexStorage2D (GL_TEXTURE_2D, 1, GL_RGBA8, w, h);
-//tyjhtyjytj
         //glTexSubImage2D(GL_TEXTURE_2D,0,0,0,w,h,GL_RGBA,GL_UNSIGNED_BYTE,0);
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         /* Clamping to edges is important to prevent artifacts when scaling */
@@ -103,9 +102,6 @@ struct atlas {
         /* Linear filtering usually looks best for text */
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-
 
         /* Paste all glyph bitmaps into the texture, remembering the offset */
         int ox = 0;

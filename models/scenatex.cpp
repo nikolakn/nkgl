@@ -5,6 +5,36 @@
 
 NKscenaTex::NKscenaTex()
 {
+    init();
+}
+
+void NKscenaTex::moveLeft()
+{
+    //fPyramidRotationSpeed -= 2.0f;
+    fRotationAnglePyramid += 4.0f;
+    fRotationAnglePyramid += fPyramidRotationSpeed;
+}
+
+void NKscenaTex::moveRight()
+{
+    //fPyramidRotationSpeed += 2.0f;
+    fRotationAnglePyramid -= 4.0f;
+}
+
+void NKscenaTex::moveUp()
+{
+    //fCubeRotationSpeed += 2.0f;
+    fRotationAngleCube += 4.0f;
+}
+
+void NKscenaTex::moveDown()
+{
+    //fCubeRotationSpeed -= 2.0f;
+    fRotationAngleCube -= 4.0f;
+}
+
+void NKscenaTex::init()
+{
     fRotationAngle = 0.0;
     fRotationAngleCube = 0.0f;
     fRotationAnglePyramid = 0.0f;
@@ -125,33 +155,8 @@ NKscenaTex::NKscenaTex()
 
 }
 
-void NKscenaTex::moveLeft()
-{
-    //fPyramidRotationSpeed -= 2.0f;
-    fRotationAnglePyramid += 4.0f;
-    fRotationAnglePyramid += fPyramidRotationSpeed;
-}
 
-void NKscenaTex::moveRight()
-{
-    //fPyramidRotationSpeed += 2.0f;
-    fRotationAnglePyramid -= 4.0f;
-}
-
-void NKscenaTex::moveUp()
-{
-    //fCubeRotationSpeed += 2.0f;
-    fRotationAngleCube += 4.0f;
-}
-
-void NKscenaTex::moveDown()
-{
-    //fCubeRotationSpeed -= 2.0f;
-    fRotationAngleCube -= 4.0f;
-}
-
-
-void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
+void NKscenaTex::render(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
     //glEnable(GL_DEPTH_TEST);
     // Accept fragment if it closer to the camera than the former one
     //glDepthFunc(GL_LESS);
@@ -213,7 +218,7 @@ void NKscenaTex::RenderScene(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
 }
 
 
-void NKscenaTex::ReleaseScene()
+void NKscenaTex::releaseScene()
 {
     spMain.deleteProgram();
 

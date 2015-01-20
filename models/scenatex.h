@@ -1,23 +1,11 @@
-#define GLM_FORCE_RADIANS
-#include <GL/glew.h>
-#include <iostream>
-#include <string>
-#include "opengl/cshader.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "models/nkmodel.h"
 
-#include "opengl/texture.h"
-#include "opengl/vertexBufferObject.h"
-
-class NKscenaTex
+class NKscenaTex : public NKModel
 {
 private:
 
     CVertexBufferObject *vboSceneObjects;
     unsigned int uiVAO; // And one VAO
-
-    CShader shVertex, shFragment;
-    CShaderProgram spMain;
 
     CTexture tGold, tSnow;
 
@@ -32,7 +20,9 @@ public:
     void moveRight();
     void moveUp();
     void moveDown();
-    void RenderScene(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
-	void ReleaseScene();
+
+    void init();
+    void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
+    void releaseScene();
 	
 };

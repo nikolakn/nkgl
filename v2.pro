@@ -45,7 +45,8 @@ HEADERS += \
     models/nkkocka.h \
     opengl/shader.hpp \
     opengl/nkgltext.h \
-    opengl/shader_utils.h
+    opengl/shader_utils.h \
+    models/nkmodel.h
 
 DISTFILES += \
     data/shaders/shader.frag \
