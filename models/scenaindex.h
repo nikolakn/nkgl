@@ -1,15 +1,8 @@
-#define GLM_FORCE_RADIANS
-#include <GL/glew.h>
-#include <iostream>
-#include <string>
-#include "opengl/cshader.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
+#include "models/nkmodel.h"
 #define HM_SIZE_X 4 // Dimensions of our heightmap
 #define HM_SIZE_Y 4
 
-class NKscenaIndex
+class NKscenaIndex : public NKModel
 {
 private:
 
@@ -22,16 +15,14 @@ private:
     bool bVerticalSync = true;
 
 
-CShader shVertex, shFragment;
-CShaderProgram spMain;
-
 float fRotationAngle;
 const float PIover180 = 3.1415f/180.0f;
 
 
 public:
     NKscenaIndex();
-    void RenderScene(glm::mat4 *ProjectionMatrix);
-	void ReleaseScene();
+    void init();
+    void render(glm::mat4 *ProjectionMatrix);
+    void releaseScene();
 	
 };

@@ -6,7 +6,6 @@ private:
 
     CVertexBufferObject *vboSceneObjects;
     unsigned int uiVAO; // And one VAO
-
     CTexture tGold, tSnow;
 
 float fRotationAngle;

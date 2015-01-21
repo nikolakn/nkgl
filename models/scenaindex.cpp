@@ -4,6 +4,13 @@
 
 NKscenaIndex::NKscenaIndex()
 {
+
+    init();
+
+}
+
+void NKscenaIndex::init()
+{
     fRotationAngle = 0.0;
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -66,11 +73,9 @@ NKscenaIndex::NKscenaIndex()
     spMain.addShaderToProgram(&shFragment);
 
     spMain.linkProgram();
-
-
 }
 
-void NKscenaIndex::RenderScene(glm::mat4 *ProjectionMatrix)
+void NKscenaIndex::render(glm::mat4 *ProjectionMatrix)
 {
     spMain.useProgram();
     glBindVertexArray(uiVAOHeightmap);
@@ -93,7 +98,7 @@ void NKscenaIndex::RenderScene(glm::mat4 *ProjectionMatrix)
 }
 
 
-void NKscenaIndex::ReleaseScene()
+void NKscenaIndex::releaseScene()
 {
     glDeleteBuffers(1, &uiVBOHeightmapData);
     glDeleteBuffers(1, &uiVBOIndices);
