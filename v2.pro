@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     models/nkkocka.cpp \
     opengl/shader.cpp \
     opengl/nkgltext.cpp \
-    opengl/shader_utils.cpp
+    opengl/shader_utils.cpp \
+    models/nktut1.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -46,7 +47,8 @@ HEADERS += \
     opengl/shader.hpp \
     opengl/nkgltext.h \
     opengl/shader_utils.h \
-    models/nkmodel.h
+    models/nkmodel.h \
+    models/nktut1.h
 
 DISTFILES += \
     data/shaders/shader.frag \
