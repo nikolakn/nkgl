@@ -29,7 +29,7 @@ bool  NKOpengl::initGL(int duzina, int visina)
     //glCullFace(GL_FRONT);
 
     nktext.Init(duzina,visina);
-
+    texscen.init();
 
     return true;
 }
@@ -58,12 +58,12 @@ void NKOpengl::moveRight()
 }
 void NKOpengl::moveUp()
 {
-    texscen.moveUp();
+    //texscen.moveUp();
 }
 
 void NKOpengl::moveDown()
 {
-     texscen.moveDown();
+     //texscen.moveDown();
 }
 
 

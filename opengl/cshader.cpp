@@ -2,7 +2,7 @@
 
 #include "cshader.h"
 #include <fstream>
-
+#include <iostream>
 CShader::CShader()
 {
 	bLoaded = false;
@@ -12,7 +12,10 @@ CShader::CShader()
 bool CShader::loadShader(string sFile, int a_iType)
 {
 	FILE* fp = fopen(sFile.c_str(), "rt");
-	if(!fp)return false;
+    if(!fp){
+        std::cout<<"nemogu da otvorim fajl"<< std::endl;
+        return false;
+    }
 	// Get all lines from a file
 
 	vector<string> sLines;

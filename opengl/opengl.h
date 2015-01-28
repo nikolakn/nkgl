@@ -18,8 +18,7 @@
 #include "models/scenaindex.h"
 #include "opengl/camera.h"
 #include "models/scenatex.h"
-#include "models/nkkocka.h"
-
+#include "models/nkhex.h"
 #include "opengl/nkgltext.h"
 
 class NKOpengl
@@ -39,7 +38,7 @@ public:
     void RenderText(std::string message, SDL_Color color, int x, int y, int size);
 private:
     //NKscenaIndex s2;
-    NKscenaTex texscen;
+    NKHex texscen;
     NKCamera kamera;
     NKGLText nktext;
 
