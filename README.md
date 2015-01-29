@@ -23,5 +23,7 @@ http://www.freetype.org/
 http://freeimage.sourceforge.net/download.html
 
 tested:
+
 Linux Mint 17.1 Mate 64-bit
+
 Windows 7 32-bit
