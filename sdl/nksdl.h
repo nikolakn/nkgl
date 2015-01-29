@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 
 #ifdef WIN32
+#define SDL_MAIN_HANDLED
 #include <windows.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>

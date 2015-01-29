@@ -84,7 +84,7 @@ void NKGLText::render()
 
     /* Effects of alignment */
     render_text("The Quick Brown Fox Jumps Over The Lazy Dog", a48, -1 + 8 * sx, 1 - 50 * sy, sx, sy);
-    render_text("Nikola 123", a48, -1 + 10 * sx, 1 - 130 * sy, sx*2, sy*2);
+    render_text("Nikola 123", a48, -1 + 10 * sx, 1 - 130 * sy, sx, sy);
 
     /* Scaling the texture versus changing the font size */
     render_text("The Small", a48, -1 + 8 * sx, 1 - 170 * sy, sx*0.4 , sy *0.4);

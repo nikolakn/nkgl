@@ -5,7 +5,7 @@
 
 NKscenaTex::NKscenaTex()
 {
-    init();
+    //init();
 }
 
 void NKscenaTex::moveLeft()
@@ -83,8 +83,7 @@ void NKscenaTex::init()
 
     glm::vec3 vGround[] =
     {
-        glm::vec3(-50, -10, -50), glm::vec3(50, -10, -50), glm::vec3(50, -10, 50),
-        glm::vec3(50, -10, 50), glm::vec3(-50, -10, 50), glm::vec3(-50, -10, -50)
+        glm::vec3(-50.0, -10.0, -50.0), glm::vec3(50.0, -10.0, -50.0), glm::vec3(50.0, -10.0, 50.0), glm::vec3(50.0, -10.0, 50.0), glm::vec3(-50.0, -10.0, 50.0), glm::vec3(-50.0, -10.0, -50.0)
     };
 
     vboSceneObjects->createVBO();

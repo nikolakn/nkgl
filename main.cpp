@@ -1,4 +1,4 @@
-
+#define SDL_MAIN_HANDLED
 #include "sdl/nksdl.h"
 
 

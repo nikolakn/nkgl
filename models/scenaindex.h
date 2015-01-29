@@ -22,7 +22,7 @@ const float PIover180 = 3.1415f/180.0f;
 public:
     NKscenaIndex();
     void init();
-    void render(glm::mat4 *ProjectionMatrix);
+    void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
     void releaseScene();
 	
 };

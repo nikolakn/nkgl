@@ -5,8 +5,6 @@
 NKscenaIndex::NKscenaIndex()
 {
 
-    init();
-
 }
 
 void NKscenaIndex::init()
@@ -75,7 +73,7 @@ void NKscenaIndex::init()
     spMain.linkProgram();
 }
 
-void NKscenaIndex::render(glm::mat4 *ProjectionMatrix)
+void NKscenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
 {
     spMain.useProgram();
     glBindVertexArray(uiVAOHeightmap);
