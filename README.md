@@ -1,7 +1,7 @@
 # stepa
 repository for my OpenGL 3.3 learning 
 
- set up everything for OpenGL learning in Linux Env.
+ set up everything for OpenGL learning in Linux and Windows Env.
  dependences: SDL2 , GLEW , FreeImage, FreeType, qmake
  
  QT creator as IDE and project file to compile with qmake, no need for qt sdk
@@ -11,6 +11,7 @@ qmake;
 make
 
 links:
+
 https://www.libsdl.org/download-2.0.php
 
 http://glew.sourceforge.net/
