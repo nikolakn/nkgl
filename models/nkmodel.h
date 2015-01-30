@@ -21,7 +21,6 @@ class NKModel
 
  protected:
     GLuint program;
-
 };
 
 #endif // NKMODEL_H

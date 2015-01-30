@@ -24,7 +24,6 @@ private:
 
     GLuint box;
     GLuint position_vbo;
-    GLuint gbuffer_instanced_shader;
     GLint gbuffer_instanced_mvp_mat_loc;
     GLint gbuffer_instanced_normal_mat_loc;
     GLint gbuffer_instanced_view;

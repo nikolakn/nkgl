@@ -85,9 +85,9 @@ void NKscenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
     int iProjectionLoc = glGetUniformLocation(program, "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
 
-    glm::mat4 mModelView = glm::lookAt(glm::vec3(0, 60, 30), glm::vec3(0, 0, 0), glm::vec3(0.0f, 1.0f, 0.0f));
+    //mModelView = glm::lookAt(glm::vec3(0, 60, 30), glm::vec3(0, 0, 0), glm::vec3(0.0f, 1.0f, 0.0f));
 
-    glm::mat4 mCurrent = glm::rotate(mModelView, fRotationAngle*PIover180, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 mCurrent = glm::rotate((*mModelView2), fRotationAngle*PIover180, glm::vec3(0.0f, 1.0f, 0.0f));
     mCurrent = glm::scale(mCurrent, glm::vec3(2.0, 2.0, 2.0));
     glUniformMatrix4fv(iModelViewLoc, 1, GL_FALSE, glm::value_ptr(mCurrent));
     glBindVertexArray(uiVAOHeightmap);

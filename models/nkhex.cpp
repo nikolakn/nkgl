@@ -1,5 +1,4 @@
 #include "nkhex.h"
-#include <SDL2/SDL.h>
 NKHex::NKHex()
 {
 }
@@ -8,8 +7,6 @@ NKHex::~NKHex()
 {
 
 }
-
-
 
 void NKHex::init()
 {
@@ -33,15 +30,15 @@ void NKHex::init()
     glVertexAttribPointer( location, components, type, normalized, datasize, pointer ); //tell other data
     glVertexAttribDivisor( location, divisor ); //is it instanced?
 
-    gbuffer_instanced_shader = 0;
+    program = 0;
 
 
-    frm.load_shader( gbuffer_instanced_shader, GL_VERTEX_SHADER, "./data/shaders/shaderhex.vert" );
-    frm.load_shader( gbuffer_instanced_shader, GL_FRAGMENT_SHADER, "./data/shaders/shaderhex.frag" );
+    frm.load_shader( program, GL_VERTEX_SHADER, "./data/shaders/shaderhex.vert" );
+    frm.load_shader( program, GL_FRAGMENT_SHADER, "./data/shaders/shaderhex.frag" );
 
-    gbuffer_instanced_mvp_mat_loc = glGetUniformLocation( gbuffer_instanced_shader, "mvp" );
-    gbuffer_instanced_normal_mat_loc = glGetUniformLocation( gbuffer_instanced_shader, "normal_mat" );
-    gbuffer_instanced_view = glGetUniformLocation( gbuffer_instanced_shader, "view" );
+    gbuffer_instanced_mvp_mat_loc = glGetUniformLocation( program, "mvp" );
+    gbuffer_instanced_normal_mat_loc = glGetUniformLocation( program, "normal_mat" );
+    gbuffer_instanced_view = glGetUniformLocation( program, "view" );
     //gbuffer_instanced_pos = glGetUniformLocation( gbuffer_instanced_shader, "pos" );
     glBindVertexArray( 0 );
 
@@ -49,7 +46,7 @@ void NKHex::init()
 
 void NKHex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
 {
-    glUseProgram(gbuffer_instanced_shader);
+    glUseProgram(program);
     //instanced rendering
     glUniformMatrix4fv(gbuffer_instanced_mvp_mat_loc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
     glUniformMatrix4fv(gbuffer_instanced_view, 1, GL_FALSE, glm::value_ptr(*mModelView));
