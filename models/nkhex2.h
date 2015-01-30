@@ -1,22 +1,22 @@
-#ifndef NKHEX_H
-#define NKHEX_H
-
+#ifndef NKHEX2_H
+#define NKHEX2_H
+#include "opengl/framework.h"
 #include "nkmodel.h"
 
-#include "opengl/shader_utils.h"
-#include "opengl/framework.h"
-class NKHex : public NKModel
+class NKHex2 : public NKModel
 {
 public:
-    NKHex();
-    ~NKHex();
-
-    // NKModel interface
-public:
+    NKHex2();
     void init();
     void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
     void releaseScene();
+    GLuint create_hex() const;
 private:
+    int N;            	//size of grid
+    int sirina;        	//width of grid
+    const float  hexw=0.2*4;  	//width of one hex
+    const float  hexh=0.18*4; 	//height of one hex
+
     GLuint box;
     GLuint position_vbo;
     GLint gbuffer_instanced_mvp_mat_loc;
@@ -27,4 +27,6 @@ private:
     vector<vec4> positions;
 };
 
-#endif // NKHEX_H
+
+
+#endif // NKHEX2_H

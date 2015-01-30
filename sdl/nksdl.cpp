@@ -161,6 +161,8 @@ void NKSDL::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __
 
 void NKSDL::loop()
 {
+
+
     fpsTimer.start();
     //Main loop flag
     bool quit = false;

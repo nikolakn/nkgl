@@ -19,6 +19,7 @@
 #include "opengl/camera.h"
 #include "models/scenatex.h"
 #include "models/nkhex.h"
+#include "models/nkhex2.h"
 #include "opengl/nkgltext.h"
 
 class NKOpengl
@@ -37,7 +38,7 @@ public:
     void moveDown();
     //void RenderText(std::string message, SDL_Color color, int x, int y, int size);
 private:
-    NKHex hex;
+    NKHex2 hex;
     NKscenaTex texscen;
     NKCamera kamera;
     NKGLText nktext;

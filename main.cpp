@@ -4,6 +4,8 @@
 
 int main()
 {  
+
+
     NKSDL sdl;
     sdl.loop();
 

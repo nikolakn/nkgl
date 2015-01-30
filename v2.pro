@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     opengl/nkgltext.cpp \
     opengl/shader_utils.cpp \
     models/nktut1.cpp \
-    models/nkhex.cpp
+    models/nkhex.cpp \
+    models/nkhex2.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -76,7 +77,8 @@ HEADERS += \
     include/mymath/mymath.h \
     include/mymath/includes/vec2_swizzle_declarations.h \
     include/mymath/includes/vec3_swizzle_declarations.h \
-    include/mymath/includes/vec4_swizzle_declarations.h
+    include/mymath/includes/vec4_swizzle_declarations.h \
+    models/nkhex2.h
 
 DISTFILES += \
     data/shaders/shader.frag \
