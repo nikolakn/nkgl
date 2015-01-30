@@ -14,8 +14,8 @@ public:
 private:
     int N;            	//size of grid
     int sirina;        	//width of grid
-    const float  hexw=0.2*4;  	//width of one hex
-    const float  hexh=0.18*4; 	//height of one hex
+    const float  hexw=0.2;  	//width of one hex
+    const float  hexh=0.18; 	//height of one hex
 
     GLuint box;
     GLuint position_vbo;

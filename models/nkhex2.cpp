@@ -29,8 +29,8 @@ void NKHex2::init()
     program = 0;
 
 
-    frm.load_shader( program, GL_VERTEX_SHADER, "./data/shaders/shaderhex.vert" );
-    frm.load_shader( program, GL_FRAGMENT_SHADER, "./data/shaders/shaderhex.frag" );
+    frm.load_shader( program, GL_VERTEX_SHADER, "./data/shaders/shaderhex2.vert" );
+    frm.load_shader( program, GL_FRAGMENT_SHADER, "./data/shaders/shaderhex2.frag" );
 
     gbuffer_instanced_mvp_mat_loc = glGetUniformLocation( program, "mvp" );
     gbuffer_instanced_normal_mat_loc = glGetUniformLocation( program, "normal_mat" );
@@ -42,6 +42,8 @@ void NKHex2::init()
 void NKHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
 {
     glUseProgram(program);
+    glEnable(GL_LINE_SMOOTH);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     //instanced rendering
     glUniformMatrix4fv(gbuffer_instanced_mvp_mat_loc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
     glUniformMatrix4fv(gbuffer_instanced_view, 1, GL_FALSE, glm::value_ptr(*mModelView));
@@ -65,7 +67,7 @@ void NKHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
     glBindVertexArray( 0 );
     glUseProgram(0);
 
-
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     /* pojedinacno
     for( int c = 0; c < size; ++c )
     {
@@ -96,12 +98,12 @@ GLuint NKHex2::create_hex() const
   float ym = hexh/3;
   float yh = hexh-ym;
   vertices.push_back( vec3( 0, 0, 0 ) );
-  vertices.push_back( vec3( -hx, ym, 0 ) );
-  vertices.push_back( vec3( 0, yh, 0 ) );
-  vertices.push_back( vec3( hx, ym, 0 ) );
-  vertices.push_back( vec3( hx, -ym, 0 ) );
-  vertices.push_back( vec3( 0,-yh, 0 ) );
-  vertices.push_back( vec3( -hx, -ym, 0) );
+  vertices.push_back( vec3( -hx,0,  ym ) );
+  vertices.push_back( vec3( 0, 0, yh ) );
+  vertices.push_back( vec3( hx, 0, ym ) );
+  vertices.push_back( vec3( hx, 0, -ym ) );
+  vertices.push_back( vec3( 0, 0,-yh ) );
+  vertices.push_back( vec3( -hx, 0, -ym) );
 
   indices.push_back( 0 );
   indices.push_back( 1 );
@@ -113,13 +115,13 @@ GLuint NKHex2::create_hex() const
   indices.push_back( 6 );
   indices.push_back( 1 );
 
-  normals.push_back( vec3( 0, 0, 1 ) );
-  normals.push_back( vec3( 0, 0, 1 ) );
-  normals.push_back( vec3( 0, 0, 1 ) );
-  normals.push_back( vec3( 0, 0, 1 ) );
-  normals.push_back( vec3( 0, 0, 1 ) );
-  normals.push_back( vec3( 0, 0, 1 ) );
-  normals.push_back( vec3( 0, 0, 1 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
+  normals.push_back( vec3( 0, 1, 0 ) );
   glGenVertexArrays( 1, &vao );
   glBindVertexArray( vao );
 
