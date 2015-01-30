@@ -4,7 +4,7 @@
 #include "nkmodel.h"
 
 #include "opengl/shader_utils.h"
-
+#include "opengl/framework.h"
 class NKHex : public NKModel
 {
 public:
@@ -22,15 +22,15 @@ private:
     const float  hexw=0.2f;  	//width of one hex
     const float  hexh=0.18f; 	//height of one hex
 
-    CVertexBufferObject *vboSceneObjects;
-    unsigned int uiVAO; // And one VAO
-    CTexture tGold, tSnow;
-
-    float fRotationAngle;
-    const float PIover180 = 3.1415f/180.0f;
-    float fRotationAngleCube , fRotationAnglePyramid;
-    float fCubeRotationSpeed , fPyramidRotationSpeed;
-
+    GLuint box;
+    GLuint position_vbo;
+    GLuint gbuffer_instanced_shader;
+    GLint gbuffer_instanced_mvp_mat_loc;
+    GLint gbuffer_instanced_normal_mat_loc;
+    GLint gbuffer_instanced_view;
+    GLint  gbuffer_instanced_pos;
+    int size;
+    vector<vec4> positions;
 };
 
 #endif // NKHEX_H

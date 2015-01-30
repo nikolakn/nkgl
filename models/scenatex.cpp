@@ -1,7 +1,12 @@
 
 #include "models/scenatex.h"
 
+#define FOR(q,n) for(int q=0;q<n;q++)
+#define SFOR(q,s,e) for(int q=s;q<=e;q++)
+#define RFOR(q,n) for(int q=n;q>=0;q--)
+#define RSFOR(q,s,e) for(int q=s;q>=e;q--)
 
+#define ESZ(elem) (int)elem.size()
 
 NKscenaTex::NKscenaTex()
 {
@@ -128,22 +133,10 @@ void NKscenaTex::init()
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)+sizeof(glm::vec2), (void*)sizeof(glm::vec3));
 
     // Load shaders and create shader program
-
-    //shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER);
-
-    if(!shVertex.loadShader("./data/shaders/shadertex.vert", GL_VERTEX_SHADER)){
-        std::cout<<"grska shadertex.vert" << std::endl;
+    program = LoadShaders("./data/shaders/shadertex.vert", "./data/shaders/shadertex.frag");
+    if(program == 0){
+        std::cout<<"grska shader NKscenaTex" << std::endl;
     }
-    if(!shFragment.loadShader("./data/shaders/shadertex.frag", GL_FRAGMENT_SHADER)){
-        std::cout<<"grska shadertex.frag" << std::endl;
-    }
-    spMain.createProgram();
-    spMain.addShaderToProgram(&shVertex);
-    spMain.addShaderToProgram(&shFragment);
-
-    spMain.linkProgram();
-
-
 
     tGold.loadTexture2D("./data/textures/golddiag.jpg", true);
     tGold.setFiltering(TEXTURE_FILTER_MAG_BILINEAR, TEXTURE_FILTER_MIN_BILINEAR_MIPMAP);
@@ -157,10 +150,10 @@ void NKscenaTex::init()
 
 void NKscenaTex::render(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
 
-    spMain.useProgram();
+     glUseProgram(program);
 
-    int iModelViewLoc = glGetUniformLocation(spMain.getProgramID(), "modelViewMatrix");
-    int iProjectionLoc = glGetUniformLocation(spMain.getProgramID(), "projectionMatrix");
+    int iModelViewLoc = glGetUniformLocation(program, "modelViewMatrix");
+    int iProjectionLoc = glGetUniformLocation(program, "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
 
     glm::mat4 mCurrent;
@@ -200,10 +193,9 @@ void NKscenaTex::render(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
 
 void NKscenaTex::releaseScene()
 {
-    spMain.deleteProgram();
+    glDeleteShader(program);
 
-    shVertex.deleteShader();
-    shFragment.deleteShader();
+
 
     vboSceneObjects->releaseVBO();
     delete  vboSceneObjects;

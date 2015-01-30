@@ -5,13 +5,13 @@
 #include <GL/glew.h>
 #include <iostream>
 #include <string>
-#include "opengl/cshader.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "opengl/texture.h"
 #include "opengl/vertexBufferObject.h"
-
+#include "opengl/shader.hpp"
 class NKModel
 {
     virtual	void init() = 0;
@@ -20,8 +20,7 @@ class NKModel
 
 
  protected:
-    CShader shVertex, shFragment;
-    CShaderProgram spMain;
+    GLuint program;
 
 };
 

@@ -126,6 +126,11 @@ void NKCamera::rotate(float amount)
     mModelView = glm::rotate(mModelView, amount, glm::vec3(0.0f, 1.0f, 0.0f));
 
 }
+void NKCamera::rotatex(float amount)
+{
+    mModelView = glm::rotate(mModelView, amount, glm::vec3(1.0f, 0.0f, 0.1f));
+
+}
 void NKCamera::updateRot()
 {
     mModelView = glm::lookAt(m_position, m_position + m_direction, m_up);

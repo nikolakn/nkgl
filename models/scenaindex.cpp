@@ -2,6 +2,13 @@
 #include "models/scenaindex.h"
 
 
+#define FOR(q,n) for(int q=0;q<n;q++)
+#define SFOR(q,s,e) for(int q=s;q<=e;q++)
+#define RFOR(q,n) for(int q=n;q>=0;q--)
+#define RSFOR(q,s,e) for(int q=s;q>=e;q--)
+
+#define ESZ(elem) (int)elem.size()
+
 NKscenaIndex::NKscenaIndex()
 {
 
@@ -62,24 +69,20 @@ void NKscenaIndex::init()
     glDisable(GL_PRIMITIVE_RESTART);
     glDisableVertexAttribArray(0);
     // Load shaders and create shader program
+    program = LoadShaders("./data/shaders/shaderindex.vert", "./data/shaders/shaderindex.frag");
+    if(program == 0){
+        std::cout<<"grska shader 1" << std::endl;
+    }
 
-    shVertex.loadShader("./data/shaders/shaderindex.vert", GL_VERTEX_SHADER);
-    shFragment.loadShader("./data/shaders/shaderindex.frag", GL_FRAGMENT_SHADER);
-
-    spMain.createProgram();
-    spMain.addShaderToProgram(&shVertex);
-    spMain.addShaderToProgram(&shFragment);
-
-    spMain.linkProgram();
 }
 
 void NKscenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
 {
-    spMain.useProgram();
+     glUseProgram(program);
     glBindVertexArray(uiVAOHeightmap);
 
-    int iModelViewLoc = glGetUniformLocation(spMain.getProgramID(), "modelViewMatrix");
-    int iProjectionLoc = glGetUniformLocation(spMain.getProgramID(), "projectionMatrix");
+    int iModelViewLoc = glGetUniformLocation(program, "modelViewMatrix");
+    int iProjectionLoc = glGetUniformLocation(program, "projectionMatrix");
     glUniformMatrix4fv(iProjectionLoc, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
 
     glm::mat4 mModelView = glm::lookAt(glm::vec3(0, 60, 30), glm::vec3(0, 0, 0), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -93,6 +96,7 @@ void NKscenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
     fRotationAngle += 1.0f;
 
     glBindVertexArray(0);
+    glUseProgram(0);
 }
 
 
@@ -102,7 +106,6 @@ void NKscenaIndex::releaseScene()
     glDeleteBuffers(1, &uiVBOIndices);
     glDeleteVertexArrays(1, &uiVAOHeightmap);
 
-    shVertex.deleteShader();
-    shFragment.deleteShader();
+    glDeleteShader(program);
 }
 

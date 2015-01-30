@@ -32,16 +32,16 @@ bool  NKOpengl::initGL(int duzina, int visina)
 
     nktext.Init(duzina,visina);
     texscen.init();
-
+    hex.init();
     return true;
 }
 
 
 void NKOpengl::render(){
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    //glEnable(GL_DEPTH_TEST);
-    texscen.render(kamera.getProjectionMat(),kamera.modelView());
 
+    texscen.render(kamera.getProjectionMat(),kamera.modelView());
+    hex.render(kamera.getProjectionMat(),kamera.modelView());
     nktext.render();
 
 }
@@ -63,11 +63,13 @@ void NKOpengl::moveRight()
 void NKOpengl::moveUp()
 {
     texscen.moveUp();
+    kamera.rotatex(0.05f);
 }
 
 void NKOpengl::moveDown()
 {
      texscen.moveDown();
+     kamera.rotatex(-0.05f);
 }
 
 

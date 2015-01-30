@@ -37,7 +37,7 @@ public:
     void moveDown();
     //void RenderText(std::string message, SDL_Color color, int x, int y, int size);
 private:
-    //NKscenaIndex s2;
+    NKHex hex;
     NKscenaTex texscen;
     NKCamera kamera;
     NKGLText nktext;

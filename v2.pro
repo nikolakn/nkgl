@@ -5,7 +5,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 QMAKE_CXXFLAGS += -std=c++11
-
+INCLUDEPATH += ./include/mymath/
  win32 {
     #CONFIG += opengl
     LIBS += -L/usr/local/lib -lSDL2 -lGLEW32 -lfreeimage -lfreetype -lopengl32
@@ -56,7 +56,27 @@ HEADERS += \
     opengl/shader_utils.h \
     models/nkmodel.h \
     models/nktut1.h \
-    models/nkhex.h
+    models/nkhex.h \
+    opengl/framework.h \
+    include/mymath/mm_camera.h \
+    include/mymath/mm_common.h \
+    include/mymath/mm_frame.h \
+    include/mymath/mm_mat_func.h \
+    include/mymath/mm_mat2_impl.h \
+    include/mymath/mm_mat3_impl.h \
+    include/mymath/mm_mat4_impl.h \
+    include/mymath/mm_matrix_stack.h \
+    include/mymath/mm_pipeline.h \
+    include/mymath/mm_util.h \
+    include/mymath/mm_vec_func.h \
+    include/mymath/mm_vec_swizzle_out.h \
+    include/mymath/mm_vec2_impl.h \
+    include/mymath/mm_vec3_impl.h \
+    include/mymath/mm_vec4_impl.h \
+    include/mymath/mymath.h \
+    include/mymath/includes/vec2_swizzle_declarations.h \
+    include/mymath/includes/vec3_swizzle_declarations.h \
+    include/mymath/includes/vec4_swizzle_declarations.h
 
 DISTFILES += \
     data/shaders/shader.frag \

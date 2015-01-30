@@ -50,6 +50,7 @@ public:
     void updateRot();
     void rotate(float amount);
     void translate(glm::vec3 &direction);
+    void rotatex(float amount);
 private:
     glm::mat4 mProjection;
     glm::mat4 mModelView;
