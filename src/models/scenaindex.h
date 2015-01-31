@@ -2,7 +2,7 @@
 #define HM_SIZE_X 4 // Dimensions of our heightmap
 #define HM_SIZE_Y 4
 
-class NKscenaIndex : public NKModel
+class NkScenaIndex : public NkModel
 {
 private:
 
@@ -20,7 +20,7 @@ const float PIover180 = 3.1415f/180.0f;
 
 
 public:
-    NKscenaIndex();
+    NkScenaIndex();
     void init();
     void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
     void releaseScene();

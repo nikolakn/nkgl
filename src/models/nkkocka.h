@@ -9,11 +9,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-class NKkocka
+class NkKocka
 {
 public:
-    NKkocka();
-    ~NKkocka();
+    NkKocka();
+    ~NkKocka();
 
     void RenderScene(glm::mat4 *ProjectionMatrix);
     void ReleaseScene();

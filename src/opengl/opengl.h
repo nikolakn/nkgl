@@ -22,11 +22,11 @@
 #include "models/nkhex2.h"
 #include "opengl/nkgltext.h"
 
-class NKOpengl
+class NkOpengl
 {
 public:
-    NKOpengl();
-    ~NKOpengl();
+    NkOpengl();
+    ~NkOpengl();
     bool initGL(int w, int h);
 
     void render();
@@ -38,10 +38,10 @@ public:
     void moveDown();
     //void RenderText(std::string message, SDL_Color color, int x, int y, int size);
 private:
-    NKHex2 hex;
-    NKscenaTex texscen;
-    NKCamera kamera;
-    NKGLText nktext;
+    NkHex2 hex;
+    NkScenaTex texscen;
+    NkCamera kamera;
+    NkGlText nktext;
 
     int m_duzina;
     int m_visina;

@@ -7,7 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-class NKscena2
+class NkScena2
 {
 private:
 
@@ -28,7 +28,7 @@ const float PIover180 = 3.1415f/180.0f;
 
 
 public:
-    NKscena2();
+    NkScena2();
     void RenderScene(glm::mat4 *ProjectionMatrix);
 	void ReleaseScene();
 	

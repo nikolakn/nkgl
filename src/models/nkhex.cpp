@@ -1,14 +1,14 @@
 #include "nkhex.h"
-NKHex::NKHex()
+NkHex::NkHex()
 {
 }
 
-NKHex::~NKHex()
+NkHex::~NkHex()
 {
 
 }
 
-void NKHex::init()
+void NkHex::init()
 {
     size = 100;
     framework frm;
@@ -44,7 +44,7 @@ void NKHex::init()
 
 }
 
-void NKHex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
+void NkHex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
 {
     glUseProgram(program);
     //instanced rendering
@@ -84,7 +84,7 @@ void NKHex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
     */
 }
 
-void NKHex::releaseScene()
+void NkHex::releaseScene()
 {
 
 }

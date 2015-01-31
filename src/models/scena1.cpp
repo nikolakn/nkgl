@@ -2,7 +2,7 @@
 #include "scena1.h"
 
 
-NKscena1::NKscena1()
+NkScena1::NkScena1()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -79,7 +79,7 @@ NKscena1::NKscena1()
 
 
 
-void NKscena1::RenderScene()
+void NkScena1::RenderScene()
 {
 	// We just clear color
 	//glClear(GL_COLOR_BUFFER_BIT);
@@ -92,7 +92,7 @@ void NKscena1::RenderScene()
 }
 
 
-void NKscena1::ReleaseScene()
+void NkScena1::ReleaseScene()
 {
     spMain.deleteProgram();
 

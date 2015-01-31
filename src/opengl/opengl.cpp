@@ -1,16 +1,16 @@
 #include "opengl.h"
 
-NKOpengl::NKOpengl()
+NkOpengl::NkOpengl()
 {
 
 }
 
-NKOpengl::~NKOpengl()
+NkOpengl::~NkOpengl()
 {
 
 }
 
-bool  NKOpengl::initGL(int duzina, int visina)
+bool  NkOpengl::initGL(int duzina, int visina)
 {
     m_duzina = duzina;
     m_visina = visina;
@@ -34,7 +34,7 @@ bool  NKOpengl::initGL(int duzina, int visina)
 }
 
 
-void NKOpengl::render(){
+void NkOpengl::render(){
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     texscen.render(kamera.getProjectionMat(),kamera.modelView());
@@ -43,7 +43,7 @@ void NKOpengl::render(){
 
 }
 
-void NKOpengl::moveLeft()
+void NkOpengl::moveLeft()
 {
     //texscen.moveLeft();
     //kamera.setX(kamera.getX()-0.5);
@@ -51,19 +51,19 @@ void NKOpengl::moveLeft()
 
 }
 
-void NKOpengl::moveRight()
+void NkOpengl::moveRight()
 {
     // texscen.moveRight();
     //kamera.setX(kamera.getX()+0.5);
     kamera.rotate(-0.05f);
 }
-void NKOpengl::moveUp()
+void NkOpengl::moveUp()
 {
     texscen.moveUp();
     kamera.rotatex(0.05f);
 }
 
-void NKOpengl::moveDown()
+void NkOpengl::moveDown()
 {
      texscen.moveDown();
      kamera.rotatex(-0.05f);

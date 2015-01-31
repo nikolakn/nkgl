@@ -8,37 +8,37 @@
 
 #define ESZ(elem) (int)elem.size()
 
-NKscenaTex::NKscenaTex()
+NkScenaTex::NkScenaTex()
 {
     //init();
 }
 
-void NKscenaTex::moveLeft()
+void NkScenaTex::moveLeft()
 {
     //fPyramidRotationSpeed -= 2.0f;
     fRotationAnglePyramid += 4.0f;
     fRotationAnglePyramid += fPyramidRotationSpeed;
 }
 
-void NKscenaTex::moveRight()
+void NkScenaTex::moveRight()
 {
     //fPyramidRotationSpeed += 2.0f;
     fRotationAnglePyramid -= 4.0f;
 }
 
-void NKscenaTex::moveUp()
+void NkScenaTex::moveUp()
 {
     //fCubeRotationSpeed += 2.0f;
     fRotationAngleCube += 4.0f;
 }
 
-void NKscenaTex::moveDown()
+void NkScenaTex::moveDown()
 {
     //fCubeRotationSpeed -= 2.0f;
     fRotationAngleCube -= 4.0f;
 }
 
-void NKscenaTex::init()
+void NkScenaTex::init()
 {
     fRotationAngle = 0.0;
     fRotationAngleCube = 0.0f;
@@ -148,7 +148,7 @@ void NKscenaTex::init()
 }
 
 
-void NKscenaTex::render(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
+void NkScenaTex::render(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
 
      glUseProgram(program);
 
@@ -191,7 +191,7 @@ void NKscenaTex::render(glm::mat4 *ProjectionMatrix,glm::mat4 *mModelView){
 }
 
 
-void NKscenaTex::releaseScene()
+void NkScenaTex::releaseScene()
 {
     glDeleteShader(program);
 

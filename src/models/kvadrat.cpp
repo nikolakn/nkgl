@@ -1,11 +1,11 @@
 
 #include "kvadrat.h"
 
-void NKkvadrat::loadShaders(){
+void NkKvadrat::loadShaders(){
 
 }
 
-NKkvadrat::NKkvadrat() {
+NkKvadrat::NkKvadrat() {
     gProgramID = 0;
     gVertexPos2DLocation = -1; //-1
     gVBO = 0;
@@ -124,7 +124,7 @@ NKkvadrat::NKkvadrat() {
 }
 
 
-void NKkvadrat::render()
+void NkKvadrat::render()
 {
     //Bind program
     glUseProgram( gProgramID );
@@ -147,7 +147,7 @@ void NKkvadrat::render()
     glUseProgram(0);
 }
 
-void NKkvadrat::printProgramLog( GLuint program )
+void NkKvadrat::printProgramLog( GLuint program )
 {
     //Make sure name is shader
     if( glIsProgram( program ) )
@@ -179,7 +179,7 @@ void NKkvadrat::printProgramLog( GLuint program )
     }
 }
 
-void NKkvadrat::printShaderLog( GLuint shader )
+void NkKvadrat::printShaderLog( GLuint shader )
 {
     //Make sure name is shader
     if( glIsShader( shader ) )

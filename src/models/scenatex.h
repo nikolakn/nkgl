@@ -1,6 +1,6 @@
 #include "models/nkmodel.h"
 
-class NKscenaTex : public NKModel
+class NkScenaTex : public NkModel
 {
 private:
 
@@ -14,7 +14,7 @@ float fRotationAngleCube , fRotationAnglePyramid;
 float fCubeRotationSpeed , fPyramidRotationSpeed;
 
 public:
-    NKscenaTex();
+    NkScenaTex();
     void moveLeft();
     void moveRight();
     void moveUp();

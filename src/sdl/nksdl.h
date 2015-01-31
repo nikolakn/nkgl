@@ -26,11 +26,11 @@
 using namespace std;
 
 
-class NKSDL
+class NkSdl
 {
 public:
-    NKSDL();
-    ~NKSDL();
+    NkSdl();
+    ~NkSdl();
     void close();
     void handleKeys(SDL_Event event, int x, int y);
     void loop();
@@ -41,7 +41,7 @@ private:
     //OpenGL context
     SDL_GLContext gContext;
     //Keep track of the frame count
-    NKOpengl *GL;
+    NkOpengl *GL;
     int frame;
     int avergeFrame;
     //The frames per second timer

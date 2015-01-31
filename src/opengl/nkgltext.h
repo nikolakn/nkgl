@@ -24,7 +24,7 @@ struct point {
     GLfloat s;
     GLfloat t;
 };
-class NKGLText;
+class NkGlText;
 
 struct atlas {
     GLuint tex;		// texture object
@@ -145,7 +145,7 @@ struct atlas {
         glDeleteTextures(1, &tex);
     }
 };
-class NKGLText
+class NkGlText
 
 {
 
@@ -153,8 +153,8 @@ class NKGLText
 
 public:
 
-    NKGLText();
-    ~NKGLText();
+    NkGlText();
+    ~NkGlText();
     int Init(int w, int h);
     void render();
     //void render_text(const char *text, float x, float y, float sx, float sy);

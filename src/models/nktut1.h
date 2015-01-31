@@ -5,7 +5,7 @@
 
 
 
-class NKTut1 : public NKModel
+class NKTut1 : public NkModel
 {
 public:
     NKTut1();

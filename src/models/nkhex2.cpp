@@ -1,14 +1,14 @@
 #include "nkhex2.h"
 
-NKHex2::NKHex2()
+NkHex2::NkHex2()
 {
 
 }
 
-void NKHex2::init()
+void NkHex2::init()
 {
     framework frm;
-    box = create_hex();
+    box = createHex();
     glBindVertexArray( box );
     positions.resize( 1 ); //make some space
     glGenBuffers( 1, &position_vbo ); //gen vbo
@@ -40,7 +40,7 @@ void NKHex2::init()
 
 }
 
-void NKHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
+void NkHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
 {
     glUseProgram(program);
     glEnable(GL_LINE_SMOOTH);
@@ -83,11 +83,11 @@ void NKHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
     */
 }
 
-void NKHex2::releaseScene()
+void NkHex2::releaseScene()
 {
 }
 
-GLuint NKHex2::create_hex()
+GLuint NkHex2::createHex()
 {
   vector<vec3> vertices;
   vector<vec3> normals;

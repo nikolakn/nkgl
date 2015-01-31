@@ -4,7 +4,7 @@
 
 int main()
 {  
-    NKSDL sdl;
+    NkSdl sdl;
     sdl.loop();
 
     return 0;

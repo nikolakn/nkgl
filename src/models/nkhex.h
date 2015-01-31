@@ -5,11 +5,11 @@
 
 #include "opengl/shader_utils.h"
 #include "include/framework.h"
-class NKHex : public NKModel
+class NkHex : public NkModel
 {
 public:
-    NKHex();
-    ~NKHex();
+    NkHex();
+    ~NkHex();
 
     // NKModel interface
 public:

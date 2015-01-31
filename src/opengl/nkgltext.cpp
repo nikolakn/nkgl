@@ -1,18 +1,18 @@
 #include "nkgltext.h"
 
-NKGLText::NKGLText()
+NkGlText::NkGlText()
 {
     face = 0;
 }
 
-NKGLText::~NKGLText()
+NkGlText::~NkGlText()
 {
     if (face != 0)
         delete face;
     glDeleteProgram(program);
 }
 
-int NKGLText::Init(int w, int h)
+int NkGlText::Init(int w, int h)
 {
     m_duzina=w;
     m_visina=h;
@@ -56,7 +56,7 @@ int NKGLText::Init(int w, int h)
     return 1;
 }
 
-void NKGLText::render()
+void NkGlText::render()
 {
     float sx = 2.0 / m_duzina;
     float sy = 2.0 / m_visina;
@@ -109,7 +109,7 @@ void NKGLText::render()
 
 
 }
-void NKGLText::render_text(const char *text, atlas * a, float x, float y, float sx, float sy) {
+void NkGlText::render_text(const char *text, atlas * a, float x, float y, float sx, float sy) {
     const uint8_t *p;
 
     /* Use the texture containing the atlas */

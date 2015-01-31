@@ -1,6 +1,6 @@
 #include "camera.h"
 
-NKCamera::NKCamera()
+NkCamera::NkCamera()
 {
     x=0.0;
     y=12.0;
@@ -17,129 +17,129 @@ NKCamera::NKCamera()
     setlookAt();
 }
 
-NKCamera::~NKCamera()
+NkCamera::~NkCamera()
 {
 
 }
 
-void NKCamera::setlookAt(){
+void NkCamera::setlookAt(){
 
     mModelView= glm::lookAt(glm::vec3(x,y,z), glm::vec3(xo,yo,zo), glm::vec3(a,b,g));
 
 }
-float NKCamera::getX() const
+float NkCamera::getX() const
 {
     return x;
 }
 
-void NKCamera::setX(float value)
+void NkCamera::setX(float value)
 {
     x = value;
     setlookAt();
 }
-float NKCamera::getY() const
+float NkCamera::getY() const
 {
     return y;
 }
 
-void NKCamera::setY(float value)
+void NkCamera::setY(float value)
 {
     y = value;
     setlookAt();
 }
-float NKCamera::getZ() const
+float NkCamera::getZ() const
 {
     return z;
 }
 
-void NKCamera::setZ(float value)
+void NkCamera::setZ(float value)
 {
     z = value;
     setlookAt();
 }
-float NKCamera::getA() const
+float NkCamera::getA() const
 {
     return a;
 }
 
-void NKCamera::setA(float value)
+void NkCamera::setA(float value)
 {
     a = value;
     setlookAt();
 }
-float NKCamera::getB() const
+float NkCamera::getB() const
 {
     return b;
 }
 
-void NKCamera::setB(float value)
+void NkCamera::setB(float value)
 {
     b = value;
     setlookAt();
 }
-float NKCamera::getG() const
+float NkCamera::getG() const
 {
     return g;
 }
 
-void NKCamera::setG(float value)
+void NkCamera::setG(float value)
 {
     g = value;
     setlookAt();
 }
-float NKCamera::getXo() const
+float NkCamera::getXo() const
 {
     return xo;
 }
 
-void NKCamera::setXo(float value)
+void NkCamera::setXo(float value)
 {
     xo = value;
     setlookAt();
 }
-float NKCamera::getYo() const
+float NkCamera::getYo() const
 {
     return yo;
 }
 
-void NKCamera::setYo(float value)
+void NkCamera::setYo(float value)
 {
     yo = value;
     setlookAt();
 }
-float NKCamera::getZo() const
+float NkCamera::getZo() const
 {
     return zo;
 }
 
-void NKCamera::setZo(float value)
+void NkCamera::setZo(float value)
 {
     zo = value;
     setlookAt();
 }
-void NKCamera::setModelView(const glm::mat4 &modelView)
+void NkCamera::setModelView(const glm::mat4 &modelView)
 {
     mModelView = modelView;
 }
-void NKCamera::rotate(float amount)
+void NkCamera::rotate(float amount)
 {
     mModelView = glm::rotate(mModelView, amount, glm::vec3(0.0f, 1.0f, 0.0f));
 
 }
-void NKCamera::rotatex(float amount)
+void NkCamera::rotatex(float amount)
 {
     mModelView = glm::rotate(mModelView, amount, glm::vec3(1.0f, 0.0f, 0.1f));
 
 }
-void NKCamera::updateRot()
+void NkCamera::updateRot()
 {
     mModelView = glm::lookAt(m_position, m_position + m_direction, m_up);
 }
-void NKCamera::translate(glm::vec3& direction)
+void NkCamera::translate(glm::vec3& direction)
 {
     m_position += direction;
 }
-void NKCamera::setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
+void NkCamera::setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
 {
     mProjection = glm::perspective(fFOV, fAspectRatio, fNear, fFar);
 

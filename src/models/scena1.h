@@ -4,7 +4,7 @@
 #include "opengl/cshader.h"
 
 
-class NKscena1
+class NkScena1
 {
 private:
 
@@ -21,7 +21,7 @@ CShader shVertex, shFragment;
 CShaderProgram spMain;
 
 public:
-    NKscena1();
+    NkScena1();
 	void RenderScene();
 	void ReleaseScene();
 	

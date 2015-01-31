@@ -9,12 +9,12 @@
 
 #define ESZ(elem) (int)elem.size()
 
-NKscenaIndex::NKscenaIndex()
+NkScenaIndex::NkScenaIndex()
 {
 
 }
 
-void NKscenaIndex::init()
+void NkScenaIndex::init()
 {
     fRotationAngle = 0.0;
 
@@ -76,7 +76,7 @@ void NKscenaIndex::init()
 
 }
 
-void NKscenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
+void NkScenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
 {
      glUseProgram(program);
     glBindVertexArray(uiVAOHeightmap);
@@ -100,7 +100,7 @@ void NKscenaIndex::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView2)
 }
 
 
-void NKscenaIndex::releaseScene()
+void NkScenaIndex::releaseScene()
 {
     glDeleteBuffers(1, &uiVBOHeightmapData);
     glDeleteBuffers(1, &uiVBOIndices);

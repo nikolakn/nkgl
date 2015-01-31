@@ -2,7 +2,7 @@
 #include "models/scena2.h"
 
 
-NKscena2::NKscena2()
+NkScena2::NkScena2()
 {
     fRotationAngle = 0.0;
     //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -81,7 +81,7 @@ NKscena2::NKscena2()
 	
 }
 
-void NKscena2::RenderScene(glm::mat4 *ProjectionMatrix)
+void NkScena2::RenderScene(glm::mat4 *ProjectionMatrix)
 {
 	// We just clear color
 
@@ -137,7 +137,7 @@ void NKscena2::RenderScene(glm::mat4 *ProjectionMatrix)
 }
 
 
-void NKscena2::ReleaseScene()
+void NkScena2::ReleaseScene()
 {
     spMain.deleteProgram();
 

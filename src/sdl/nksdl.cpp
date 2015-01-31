@@ -1,6 +1,6 @@
 #include "nksdl.h"
 
-NKSDL::NKSDL()
+NkSdl::NkSdl()
 {
     nkfullScrean = false;
     frame = 0;
@@ -78,7 +78,7 @@ NKSDL::NKSDL()
             }
         }
     }
-    GL = new NKOpengl();
+    GL = new NkOpengl();
     if( !GL->initGL(duzina,visina) )
     {
         cout <<"unable to initialize OpenGL!\n";
@@ -86,12 +86,12 @@ NKSDL::NKSDL()
     }
 }
 
-NKSDL::~NKSDL()
+NkSdl::~NkSdl()
 {
     close();
 }
 
-void NKSDL::close()
+void NkSdl::close()
 {
     //Destroy window
     if( gWindow != NULL )
@@ -103,7 +103,7 @@ void NKSDL::close()
     exit(0);
 }
 
-void NKSDL::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __attribute__((unused)))
+void NkSdl::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __attribute__((unused)))
 {
     switch( event.type ){
     /* Look for a keypress */
@@ -123,10 +123,10 @@ void NKSDL::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __
             GL->moveRight();
             break;
         case SDLK_UP:
-             GL->moveUp();
+            GL->moveUp();
             break;
         case SDLK_DOWN:
-             GL->moveDown();
+            GL->moveDown();
             break;
         default:
             break;
@@ -159,7 +159,7 @@ void NKSDL::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __
     }
 }
 
-void NKSDL::loop()
+void NkSdl::loop()
 {
 
 

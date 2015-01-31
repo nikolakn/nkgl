@@ -1,6 +1,6 @@
 #include "nkkocka.h"
 
-NKkocka::NKkocka()
+NkKocka::NkKocka()
 {
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
@@ -113,12 +113,12 @@ NKkocka::NKkocka()
 
 }
 
-NKkocka::~NKkocka()
+NkKocka::~NkKocka()
 {
 
 }
 
-void NKkocka::RenderScene(glm::mat4 *ProjectionMatrix)
+void NkKocka::RenderScene(glm::mat4 *ProjectionMatrix)
 {
 
     // Use our shader
@@ -162,7 +162,7 @@ void NKkocka::RenderScene(glm::mat4 *ProjectionMatrix)
 
 }
 
-void NKkocka::ReleaseScene()
+void NkKocka::ReleaseScene()
 {
 
 }

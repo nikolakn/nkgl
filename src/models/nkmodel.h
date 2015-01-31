@@ -12,7 +12,7 @@
 #include "opengl/texture.h"
 #include "opengl/vertexBufferObject.h"
 #include "opengl/shader.hpp"
-class NKModel
+class NkModel
 {
     virtual	void init() = 0;
     virtual void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView) = 0;
