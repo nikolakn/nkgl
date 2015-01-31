@@ -1,6 +1,6 @@
 #ifndef NKHEX2_H
 #define NKHEX2_H
-#include "opengl/framework.h"
+#include "include/framework.h"
 #include "nkmodel.h"
 
 class NKHex2 : public NKModel

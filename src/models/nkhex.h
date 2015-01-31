@@ -4,7 +4,7 @@
 #include "nkmodel.h"
 
 #include "opengl/shader_utils.h"
-#include "opengl/framework.h"
+#include "include/framework.h"
 class NKHex : public NKModel
 {
 public:

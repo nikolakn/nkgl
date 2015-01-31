@@ -1,0 +1,7 @@
+
+* todo
+
+
+* potsetnik
+reorganizovano stablo direktorijuma u win7 proveriti dali je seve ok u linuxu. 
+proveriti saderhex i shaderhex2 u linuxu.
