@@ -10,7 +10,7 @@ public:
     void init();
     void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
     void releaseScene();
-    GLuint create_hex() const;
+    GLuint create_hex();
 private:
     int N;            	//size of grid
     int sirina;        	//width of grid
@@ -25,6 +25,7 @@ private:
     GLint  gbuffer_instanced_pos;
     int size;
     vector<vec4> positions;
+
 };
 
 
