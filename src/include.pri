@@ -57,5 +57,13 @@ HEADERS += \
     src/include/mymath/mm_vec2_impl.h \
     src/include/mymath/mm_vec3_impl.h \
     src/include/mymath/mm_vec4_impl.h \
-    src/include/mymath/mymath.h
+    src/include/mymath/mymath.h \
+    src/bandit/assertion_exception.h \
+    src/bandit/bandit.h \
+    src/bandit/context.h \
+    src/bandit/grammar.h \
+    src/bandit/listener.h \
+    src/bandit/options.h \
+    src/bandit/runner.h \
+    src/bandit/test_run_error.h
 
