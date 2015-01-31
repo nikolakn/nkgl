@@ -12,11 +12,10 @@ public:
     void releaseScene();
     GLuint create_hex();
 private:
-    int N;            	//size of grid
     int sirina;        	//width of grid
-    const float  hexw=0.2;  	//width of one hex
-    const float  hexh=0.18; 	//height of one hex
-
+    const float  HEX_WIDTH=0.2;  	//width of one hex
+    const float  HEX_HEIGHT=0.18; 	//height of one hex
+    const int HEX_SIZE = 50000; //number of hex
     GLuint box;
     GLuint position_vbo;
     GLint gbuffer_instanced_mvp_mat_loc;

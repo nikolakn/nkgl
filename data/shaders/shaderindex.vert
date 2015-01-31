@@ -1,5 +1,5 @@
 #version 330
-
+//promenjeno2
 uniform mat4 projectionMatrix;
 uniform mat4 modelViewMatrix;
 

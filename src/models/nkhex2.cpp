@@ -7,7 +7,6 @@ NKHex2::NKHex2()
 
 void NKHex2::init()
 {
-    N = 50000;
     framework frm;
     box = create_hex();
     glBindVertexArray( box );
@@ -66,7 +65,7 @@ void NKHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
     //you need to upload sizeof( vec4 ) * number_of_cubes bytes, DYNAMIC_DRAW because it is updated per frame
 
     //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_vbo);
-    glDrawElementsInstanced( GL_TRIANGLE_FAN, 8, GL_UNSIGNED_INT, 0, N);
+    glDrawElementsInstanced( GL_TRIANGLE_FAN, 8, GL_UNSIGNED_INT, 0, HEX_SIZE);
     glBindVertexArray( 0 );
     glUseProgram(0);
 
@@ -97,9 +96,9 @@ GLuint NKHex2::create_hex()
   GLuint vertex_vbo = 0, normal_vbo = 0, index_vbo=0;
 
   //up
-  float hx = hexw/2;
-  float ym = hexh/3;
-  float yh = hexh-ym;
+  float hx = HEX_WIDTH/2;
+  float ym = HEX_HEIGHT/3;
+  float yh = HEX_HEIGHT-ym;
   vertices.push_back( vec3( 0, 0, 0 ) );
   vertices.push_back( vec3( -hx,0,  ym ) );
   vertices.push_back( vec3( 0, 0, yh ) );
