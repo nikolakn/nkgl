@@ -35,6 +35,9 @@ OTHER_FILES += \
     data/shaders/text.v.glsl \
     data/font/FreeSans.ttf \
     README.md \
-    doc/potsetnik.org
+    doc/potsetnik.org \
+    data/shaders/shaderhex2.frag \
+    data/shaders/shaderhex2.vert \
+    data/textures/hextex.png
 
 

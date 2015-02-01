@@ -11,6 +11,7 @@ public:
     void render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
     void releaseScene();
     GLuint createHex();
+    GLuint loadTexture(string filenameString,GLenum minificationFilter = GL_LINEAR, GLenum magnificationFilter = GL_LINEAR);
 private:
     const float  HEX_WIDTH=0.2;  	//width of one hex
     const float  HEX_HEIGHT=0.18; 	//height of one hex
@@ -24,7 +25,8 @@ private:
     GLint  gbuffer_instanced_pos;
 
     vector<vec4> positions;
-
+    CTexture hextex;
+    GLuint tex;
 };
 
 
