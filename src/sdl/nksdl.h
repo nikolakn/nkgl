@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 
 #ifdef WIN32
+
 #define SDL_MAIN_HANDLED
 #include <windows.h>
 #include <SDL/SDL.h>
@@ -15,8 +16,6 @@
 #include <SDL2/SDL_opengl.h>
 #endif
 
-
-//#include <GL/glu.h>
 #include <iostream>
 #include <string>
 
@@ -25,7 +24,9 @@
 
 using namespace std;
 
-
+/**
+* Create window for OpenGl rendering
+*/
 class NkSdl
 {
 public:
@@ -35,17 +36,12 @@ public:
     void handleKeys(SDL_Event event, int x, int y);
     void loop();
 private:
-
-    //The window we'll be rendering to
-    SDL_Window* gWindow = NULL;
-    //OpenGL context
-    SDL_GLContext gContext;
-    //Keep track of the frame count
-    NkOpengl *GL;
+    SDL_Window* gWindow = NULL; /**< The window we'll be rendering to */
+    SDL_GLContext gContext;     /**< OpenGL context */
+    NkOpengl *GL;               /**< OpenGL render */
     int frame;
     int avergeFrame;
-    //The frames per second timer
-    LTimer fpsTimer;
+    LTimer fpsTimer;            /**< The frames per second timer */
     GLsizei duzina;
     GLsizei  visina;
     bool nkfullScrean;
