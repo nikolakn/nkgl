@@ -22,4 +22,5 @@ SOURCES += \
     src/opengl/camera.cpp
 
 HEADERS += \
-    src/opengl/camera.h
+    src/opengl/camera.h \
+    src/opengl/testcamera.h
