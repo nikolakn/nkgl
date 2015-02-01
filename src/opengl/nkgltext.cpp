@@ -16,6 +16,12 @@ int NkGlText::Init(int w, int h)
 {
     m_duzina=w;
     m_visina=h;
+
+
+
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
     fontfilename = "./data/font/FreeSans.ttf";
     face = new FT_Face();
     ft = new FT_Library();
@@ -58,10 +64,12 @@ int NkGlText::Init(int w, int h)
 
 void NkGlText::render()
 {
+
     float sx = 2.0 / m_duzina;
     float sy = 2.0 / m_visina;
 
     glUseProgram(program);
+    glBindVertexArray(vao);
     glDisable(GL_DEPTH_TEST);
     //glClearColor(1, 1, 1, 1);
     //    glClear(GL_COLOR_BUFFER_BIT);
@@ -102,7 +110,7 @@ void NkGlText::render()
     glUniform4fv(uniform_color, 1, transparent_green);
     render_text("The Transparent Green Fox Jumps Over The Lazy Dog", a48, -1 + 8 * sx, 1 - 380 * sy, sx, sy);
     render_text("The Transparent Green Fox Jumps Over The Lazy Dog", a48, -1 + 18 * sx, 1 - 440 * sy, sx, sy);
-
+    glBindVertexArray( 0 );
     glUseProgram(0);
     glEnable(GL_DEPTH_TEST);
 
@@ -119,9 +127,18 @@ void NkGlText::render_text(const char *text, atlas * a, float x, float y, float 
 
     /* Set up the VBO for our vertex data */
     glEnableVertexAttribArray(attribute_coord);
+
+
+
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    //glGetError() ;
     glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
+
+    //GLenum err;
+    //while ( ( err=glGetError() ) != GL_NO_ERROR) {
+    //    std::cerr << glewGetErrorString(err);
+    //}
     point coords[6 * strlen(text)];
     int c = 0;
 
@@ -155,7 +172,7 @@ void NkGlText::render_text(const char *text, atlas * a, float x, float y, float 
     glBufferData(GL_ARRAY_BUFFER, sizeof coords, coords, GL_DYNAMIC_DRAW);
     glDrawArrays(GL_TRIANGLES, 0, c);
 
-     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glDisableVertexAttribArray(attribute_coord);
 
 }

@@ -77,7 +77,7 @@ struct atlas {
         w = std::max(w, roww);
         h += rowh;
 
-
+        //glGetError();
         //for(unsigned int o=0;o<(w*h*sizeof(unsigned char)*4) ;o++)
         //   bb[o]=0;
         /* Create a texture that will be used to hold all ASCII glyphs */
@@ -88,13 +88,27 @@ struct atlas {
         glBindTexture(GL_TEXTURE_2D, tex);
         glUniform1i(uniform_tex, 0);
 
+
+
         unsigned char *pixels=new unsigned char[w*h];
+        //da bi se ocistila pozadina
         memset(pixels, 0, sizeof(*pixels));
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,  GL_RED, GL_UNSIGNED_BYTE, pixels);
+
+        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_ALPHA, w, h);
+
+        //glTexStorage2D (GL_TEXTURE_2D, 128,GL_ALPHA, w, h);
+        //glTexSubImage2D(GL_TEXTURE_2D,0,0,0,w,h,GL_ALPHA,GL_UNSIGNED_BYTE,pixels);
+
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 128);
+        //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, pixels);
+
+
+
+
+
         delete pixels;
-        //glTexStorage2D (GL_TEXTURE_2D, 1, GL_RGBA8, w, h);
-        //glTexSubImage2D(GL_TEXTURE_2D,0,0,0,w,h,GL_RGBA,GL_UNSIGNED_BYTE,0);
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         /* Clamping to edges is important to prevent artifacts when scaling */
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -102,6 +116,8 @@ struct atlas {
         /* Linear filtering usually looks best for text */
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
         /* Paste all glyph bitmaps into the texture, remembering the offset */
         int ox = 0;
@@ -122,6 +138,8 @@ struct atlas {
             }
 
             glTexSubImage2D(GL_TEXTURE_2D, 0, ox, oy, g->bitmap.width, g->bitmap.rows, GL_RED, GL_UNSIGNED_BYTE, g->bitmap.buffer);
+
+
             c[i].ax = g->advance.x >> 6;
             c[i].ay = g->advance.y >> 6;
 
@@ -172,7 +190,7 @@ private:
     FT_Library *ft;
     FT_Face *face;
     const char *fontfilename;
-
+    GLuint vao;
 
     atlas *a48;
     atlas *a24;

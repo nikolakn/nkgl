@@ -1,6 +1,7 @@
-#version 130
+#version 330
  
 in vec4 coord;
+
 out vec2 texpos;
 
 void main(void) {

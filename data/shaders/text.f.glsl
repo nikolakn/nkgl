@@ -1,8 +1,11 @@
-#version 130
+#version 330
 
 in vec2 texpos;
+
 uniform sampler2D tex;
 uniform vec4 color;
+
+
 
 out vec4 outputColor;
 
