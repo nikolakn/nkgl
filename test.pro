@@ -18,4 +18,8 @@ INCLUDEPATH += ./src/
 
 
 SOURCES += \
-    src/test.cpp
+    src/test.cpp \
+    src/opengl/camera.cpp
+
+HEADERS += \
+    src/opengl/camera.h

@@ -135,9 +135,12 @@ void NkCamera::updateRot()
 {
     mModelView = glm::lookAt(m_position, m_position + m_direction, m_up);
 }
-void NkCamera::translate(glm::vec3& direction)
+void NkCamera::translate(glm::vec3 direction)
 {
     m_position += direction;
+    x = m_position[0];
+    y = m_position[1];
+    z = m_position[2];
 }
 void NkCamera::setProjection3D(float fFOV, float fAspectRatio, float fNear, float fFar)
 {
