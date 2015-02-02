@@ -40,11 +40,40 @@ bool  NkOpengl::initGL(int duzina, int visina)
 
 
 void NkOpengl::render(){
+    glClearColor( 0.f, 50.f, 200.f, 1.f );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     texscen.render(kamera.getProjectionMat(),kamera.modelView());
     hex.render(kamera.getProjectionMat(),kamera.modelView());
     nktext.render();
+
+}
+void NkOpengl::leftClick(int x, int y){
+    glDrawBuffer(GL_BACK);
+    glClearColor( 0.f, 0, 0, 1.f );
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    hex.renderSel(kamera.getProjectionMat(),kamera.modelView());
+
+    glReadBuffer(GL_BACK);
+
+    unsigned char pixels[4];
+    glReadPixels(x, y, 1, 1,  GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+
+   // System.out.println(buffer.get(0));
+    int xS= pixels[0];
+    int yS =pixels[1];
+    int sS =pixels[2];
+
+
+    if (xS == 0 && yS == 0 && sS == 0) {
+        selected = false;
+    }
+    else {
+        //selCur.setXYS(xS, yS, sS);
+        selected = true;
+    }
+    //System.out.println(xS+ " "+yS+ " "+sS);
+    cout << "click  x:" << xS << " y:"<< yS << " "  <<endl;
 
 }
 
@@ -70,8 +99,8 @@ void NkOpengl::moveUp()
 
 void NkOpengl::moveDown()
 {
-     texscen.moveDown();
-     kamera.rotatex(-0.05f);
+    texscen.moveDown();
+    kamera.rotatex(-0.05f);
 }
 
 

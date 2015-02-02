@@ -34,6 +34,11 @@ void NkHex2::init()
     gbuffer_instanced_mvp_mat_loc = glGetUniformLocation( program, "mvp" );
     gbuffer_instanced_normal_mat_loc = glGetUniformLocation( program, "normal_mat" );
     gbuffer_instanced_view = glGetUniformLocation( program, "view" );
+
+    gbuffer_instanced_mvp_mat_loc_sel = glGetUniformLocation( programsel, "mvp" );
+    gbuffer_instanced_normal_mat_loc_sel = glGetUniformLocation( programsel, "normal_mat" );
+    gbuffer_instanced_view_sel = glGetUniformLocation( programsel, "view" );
+
     //gbuffer_instanced_pos = glGetUniformLocation( gbuffer_instanced_shader, "pos" );
     //if(!hextex.loadTexture2D("./data/textures/hextex.png", true)){
     //    cout << "texture load error" << endl;
@@ -90,7 +95,33 @@ void NkHex2::render(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
     }
     */
 }
+void NkHex2::renderSel(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView)
+{
+    glUseProgram(programsel);
 
+    //glEnable(GL_LINE_SMOOTH);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //instanced rendering
+    glUniformMatrix4fv(gbuffer_instanced_mvp_mat_loc_sel, 1, GL_FALSE, glm::value_ptr(*ProjectionMatrix));
+    glUniformMatrix4fv(gbuffer_instanced_view_sel, 1, GL_FALSE, glm::value_ptr(*mModelView));
+    glBindVertexArray( box );
+
+    //glActiveTexture(GL_TEXTURE0);
+    //glBindTexture(GL_TEXTURE_2D, tex);
+    //glBindSampler(iTextureUnit, uiSampler);
+
+
+    //upload the instance data
+    glBindBuffer( GL_ARRAY_BUFFER, position_vbo ); //bind vbo
+    //you need to upload sizeof( vec4 ) * number_of_cubes bytes, DYNAMIC_DRAW because it is updated per frame
+
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_vbo);
+    glDrawElementsInstanced( GL_TRIANGLE_FAN, 8, GL_UNSIGNED_INT, 0, HEX_SIZE);
+    glBindSampler(0,0);
+    glBindVertexArray( 0 );
+    glUseProgram(0);
+
+}
 void NkHex2::releaseScene()
 {
 }
@@ -378,7 +409,56 @@ void NkHex2::LoadShaders(){
         "   color = texture2D(gSampler, pass_TextureCoord);\n"
         "}\n"
     };
+
+
+    string selvertexShaderSource = {
+        "#version 330\n"
+        "uniform mat4 mvp;\n"
+        "uniform mat4 view;\n"
+        "uniform mat3 normal_mat;\n"
+        "layout(location=0) in vec4 in_vertex;\n"
+        "layout(location=1) in vec3 in_normal;\n"
+        "layout(location=2) in vec2 in_tex;\n"
+        "flat out int InstanceID;\n"
+        "out vec4 pass_color;\n"
+        "void main()\n"
+        "{\n"
+        "  vec4 vr= in_vertex;\n"
+        "  int N="+n+";\n"
+        "  int red=(gl_InstanceID/N);\n"
+        "int col=(gl_InstanceID%N);\n"
+        "  vr.z += red*"+sidey+";\n"
+        "  if (red%2!=0)\n"
+        "    vr.x += "+sidex+"*(gl_InstanceID%N);\n"
+        "  else\n"
+        "    vr.x += "+sidex+"*(gl_InstanceID%N)+0.1;\n"
+        "  gl_Position = mvp * view * vr;\n"
+        "if (red >= 128)\n"
+        "    red=red+1;\n"
+        "if (col >=128)\n"
+        "    col=col+1;	\n"
+        "float redf= red/256.0;\n"
+        "float colf= col/256.0;\n"
+        "pass_color =  vec4(redf,colf,0.5,1);\n"
+        "  InstanceID = gl_InstanceID;\n"
+        "}\n"
+    };
+    string selfragmentShaderSource = {
+        "#version 330\n"
+        "uniform sampler2D gSampler;\n"
+        "flat in int InstanceID;\n"
+        "in vec4 pass_color;\n"
+        "out vec4 color;\n"
+        "void main()\n"
+        "{\n"
+        "   color = pass_color;\n"
+        "}\n"
+    };
+
     framework frm;
     frm.load_string_shader(vertexShaderSource, program, GL_VERTEX_SHADER);
     frm.load_string_shader(fragmentShaderSource, program, GL_FRAGMENT_SHADER);
+
+    frm.load_string_shader(selvertexShaderSource, programsel, GL_VERTEX_SHADER);
+    frm.load_string_shader(selfragmentShaderSource, programsel, GL_FRAGMENT_SHADER);
 }

@@ -2,7 +2,7 @@
 
 NkSdl::NkSdl()
 {
-    nkfullScrean = false;
+    nkfullScrean = true;
     frame = 0;
     avergeFrame = 0;
     duzina = 800;
@@ -159,10 +159,26 @@ void NkSdl::handleKeys( SDL_Event event, int x __attribute__((unused)), int y __
             break;
         }
         break;
+    case SDL_MOUSEBUTTONDOWN:
+        switch (event.button.button)
+        {
+        case SDL_BUTTON_LEFT:
+            //SDL_ShowSimpleMessageBox(0, "Mouse", "Left button was pressed!", gWindow);
+            GL->leftClick(x,visina-y);
+            break;
+        case SDL_BUTTON_RIGHT:
+            //SDL_ShowSimpleMessageBox(0, "Mouse", "Right button was pressed!", gWindow);
+            break;
+        default:
+            //SDL_ShowSimpleMessageBox(0, "Mouse", "Some other button was pressed!", gWindow);
+            break;
+        }
 
     default:
         break;
+
     }
+
 }
 
 void NkSdl::loop()
@@ -191,6 +207,7 @@ void NkSdl::loop()
             //Handle keypress with current mouse position
             int x = 0, y = 0;
             SDL_GetMouseState( &x, &y );
+
             handleKeys( e, x, y );
         }
 

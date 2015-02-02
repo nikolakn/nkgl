@@ -13,10 +13,16 @@ public:
     GLuint createHex();
     GLuint loadTexture(string filenameString,GLenum minificationFilter = GL_LINEAR, GLenum magnificationFilter = GL_LINEAR);
     void LoadShaders();
+    void renderSel(glm::mat4 *ProjectionMatrix, glm::mat4 *mModelView);
 private:
     const float  HEX_WIDTH=0.2;  	/**<width of one hex */
     const float  HEX_HEIGHT=0.18; 	/**<height of one hex*/
-    const int HEX_SIZE = 50000;     /**<number of hex    */
+    /***
+     *number of hex
+     *for selection to work nuber of hex<=65536
+     *for more hex: shader program need to be changed to include blue color too
+     **/
+    const int HEX_SIZE = 50000;
     const int HEX_LINE_NUM = 200;   /**<number of hex in one line*/
 
     GLuint box;
@@ -26,9 +32,15 @@ private:
     GLint gbuffer_instanced_view;
     GLint  gbuffer_instanced_pos;
 
+    GLint gbuffer_instanced_mvp_mat_loc_sel;
+    GLint gbuffer_instanced_normal_mat_loc_sel;
+    GLint gbuffer_instanced_view_sel;
+    GLint  gbuffer_instanced_pos_sel;
+
     vector<vec4> positions;
     CTexture hextex;
     GLuint tex;
+    GLuint programsel;
 
 };
 

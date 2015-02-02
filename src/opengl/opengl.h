@@ -37,6 +37,7 @@ public:
     void moveUp();
     void moveDown();
     //void RenderText(std::string message, SDL_Color color, int x, int y, int size);
+    void leftClick(int x, int y);
 private:
     NkHex2 hex;
     NkScenaTex texscen;
@@ -45,6 +46,7 @@ private:
 
     int m_duzina;
     int m_visina;
+    bool selected;
 };
 
 #endif // OPENGL_H
