@@ -12,6 +12,7 @@ public:
     void releaseScene();
     GLuint createHex();
     GLuint loadTexture(string filenameString,GLenum minificationFilter = GL_LINEAR, GLenum magnificationFilter = GL_LINEAR);
+    void LoadShaders();
 private:
     const float  HEX_WIDTH=0.2;  	//width of one hex
     const float  HEX_HEIGHT=0.18; 	//height of one hex
@@ -27,6 +28,7 @@ private:
     vector<vec4> positions;
     CTexture hextex;
     GLuint tex;
+
 };
 
 

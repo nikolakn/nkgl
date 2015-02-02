@@ -30,6 +30,15 @@ class framework
     int frames;
     bool run;
 public:
+    void load_string_shader(string text, GLuint& program, const GLenum& type)
+    {
+      if( !program ) program = glCreateProgram();
+
+      //std::cout << text<< std::endl  ;
+      compile_shader( text.c_str(), program, type );
+      link_shader( program );
+    }
+
     void compile_shader( const char* text, const GLuint& program, const GLenum& type ) const
     {
       GLchar infolog[INFOLOG_SIZE];

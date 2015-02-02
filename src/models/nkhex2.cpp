@@ -8,7 +8,7 @@ NkHex2::NkHex2()
 void NkHex2::init()
 {
     FreeImage_Initialise(true);
-    framework frm;
+
     box = createHex();
     glBindVertexArray( box );
     positions.resize( 1 ); //make some space
@@ -31,8 +31,8 @@ void NkHex2::init()
     program = 0;
 
 
-    frm.load_shader( program, GL_VERTEX_SHADER, "./data/shaders/shaderhex2.vert" );
-    frm.load_shader( program, GL_FRAGMENT_SHADER, "./data/shaders/shaderhex2.frag" );
+    this->LoadShaders();
+    std::cout << (int)program << std::endl;
 
     gbuffer_instanced_mvp_mat_loc = glGetUniformLocation( program, "mvp" );
     gbuffer_instanced_normal_mat_loc = glGetUniformLocation( program, "normal_mat" );
@@ -331,4 +331,50 @@ GLuint NkHex2::loadTexture(string filenameString, GLenum minificationFilter, GLe
 
     // Finally, return the texture ID
     return tempTextureID;
+}
+
+void NkHex2::LoadShaders(){
+    //shaders
+    string vertexShaderSource = {
+        "#version 330\n"
+        "uniform mat4 mvp;\n"
+        "uniform mat4 view;\n"
+        "uniform mat3 normal_mat;\n"
+        "layout(location=0) in vec4 in_vertex;\n"
+        "layout(location=1) in vec3 in_normal;\n"
+        "layout(location=2) in vec2 in_tex;\n"
+        "flat out int InstanceID;\n"
+        "out vec3 normal;\n"
+        "out vec2 pass_TextureCoord;\n"
+        "void main()\n"
+        "{\n"
+        "  vec4 vr= in_vertex;\n"
+        "  int N=200;\n"
+        "  int red=(gl_InstanceID/N);\n"
+        "  vr.z += red*0.18;\n"
+        "  if (red%2!=0)\n"
+        "    vr.x += 0.2*(gl_InstanceID%N);\n"
+        "  else\n"
+        "    vr.x += 0.2*(gl_InstanceID%N)+0.1;\n"
+        "  normal = normal_mat * in_normal;\n"
+        "  gl_Position = mvp * view * vr;\n"
+        "  pass_TextureCoord = in_tex;\n"
+        "  InstanceID = gl_InstanceID;\n"
+        "}\n"
+    };
+    string fragmentShaderSource = {
+        "#version 330\n"
+        "uniform sampler2D gSampler;\n"
+        "flat in int InstanceID;\n"
+        "in vec3 normal;\n"
+        "in vec2 pass_TextureCoord;\n"
+        "out vec4 color;\n"
+        "void main()\n"
+        "{\n"
+        "   color = texture2D(gSampler, pass_TextureCoord);\n"
+        "}\n"
+    };
+    framework frm;
+    frm.load_string_shader(vertexShaderSource, program, GL_VERTEX_SHADER); //, "./data/shaders/shaderhex2.vert" );
+    frm.load_string_shader(fragmentShaderSource, program, GL_FRAGMENT_SHADER); //, "./data/shaders/shaderhex2.frag" );
 }
