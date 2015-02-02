@@ -51,13 +51,16 @@ int NkGlText::Init(int w, int h)
         std::cout<<"grska shader" <<attribute_coord<< uniform_tex <<uniform_color<<  std::endl;
         return 0;
     }
+
     // Create the vertex buffer object
     glGenBuffers(1, &vbo);
-
+    glUseProgram(program);
     /* Create texture atlasses for several font sizes */
     a48 = new atlas(face, 48, uniform_tex);
     a24 = new atlas(face, 24, uniform_tex);
     a12 = new atlas(face, 12, uniform_tex);
+    glUseProgram(0);
+
 
     return 1;
 }

@@ -12,6 +12,7 @@ NkOpengl::~NkOpengl()
 
 bool  NkOpengl::initGL(int duzina, int visina)
 {
+
     m_duzina = duzina;
     m_visina = visina;
 
@@ -19,7 +20,7 @@ bool  NkOpengl::initGL(int duzina, int visina)
     glClearColor( 0.f, 50.f, 200.f, 1.f );
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    glEnable(GL_TEXTURE_2D);
+
 
     /* Enable blending, necessary for our alpha texture */
     glEnable(GL_BLEND);
@@ -28,8 +29,12 @@ bool  NkOpengl::initGL(int duzina, int visina)
     //glCullFace(GL_FRONT);
 
     nktext.Init(duzina,visina);
+
+
     texscen.init();
+
     hex.init();
+
     return true;
 }
 

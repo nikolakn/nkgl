@@ -51,6 +51,7 @@ NkSdl::NkSdl()
 
         else
         {
+
             //Create context
             gContext = SDL_GL_CreateContext( gWindow );
             if( gContext == NULL )
@@ -60,9 +61,12 @@ NkSdl::NkSdl()
             }
             else
             {
+
                 //Initialize GLEW
                 glewExperimental = GL_TRUE;
+
                 GLenum glewError = glewInit();
+
                 if( glewError != GLEW_OK )
                 {
                     cout << "Error initializing GLEW! %s\n"<< glewGetErrorString( glewError ) <<endl;
@@ -78,6 +82,8 @@ NkSdl::NkSdl()
             }
         }
     }
+    glGetError();
+
     GL = new NkOpengl();
     if( !GL->initGL(duzina,visina) )
     {
@@ -171,6 +177,7 @@ void NkSdl::loop()
     //Enable text input
     SDL_StartTextInput();
     //While application is running
+
     while( !quit )
     {
         //Handle events on queue

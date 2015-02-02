@@ -46,7 +46,7 @@ struct atlas {
         float ty;	// y offset of glyph in texture coordinates
     } c[128];		// character information
 
-     atlas(FT_Face *face, int height,GLint uniform_tex) {
+     atlas(FT_Face *face, int height,GLint &uniform_tex) {
         FT_Set_Pixel_Sizes(*face, 0, height);
         FT_GlyphSlot g = (*face)->glyph;
 
@@ -78,35 +78,16 @@ struct atlas {
         h += rowh;
 
         //glGetError();
-        //for(unsigned int o=0;o<(w*h*sizeof(unsigned char)*4) ;o++)
-        //   bb[o]=0;
-        /* Create a texture that will be used to hold all ASCII glyphs */
-        //glClear(GL_COLOR_BUFFER_BIT);
-        //glBindTexture(GL_TEXTURE_2D,0);
+
         glActiveTexture(GL_TEXTURE0);
         glGenTextures(1, &tex);
         glBindTexture(GL_TEXTURE_2D, tex);
-        glUniform1i(uniform_tex, 0);
-
-
+        glUniform1i(uniform_tex,0);
 
         unsigned char *pixels=new unsigned char[w*h];
         //da bi se ocistila pozadina
         memset(pixels, 0, sizeof(*pixels));
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,  GL_RED, GL_UNSIGNED_BYTE, pixels);
-
-        //glTexStorage2D(GL_TEXTURE_2D, 1, GL_ALPHA, w, h);
-
-        //glTexStorage2D (GL_TEXTURE_2D, 128,GL_ALPHA, w, h);
-        //glTexSubImage2D(GL_TEXTURE_2D,0,0,0,w,h,GL_ALPHA,GL_UNSIGNED_BYTE,pixels);
-
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 128);
-        //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, pixels);
-
-
-
-
 
         delete pixels;
         /* Clamping to edges is important to prevent artifacts when scaling */
@@ -156,7 +137,7 @@ struct atlas {
             ox += g->bitmap.width + 1;
         }
 
-        fprintf(stderr, "Generated a %d x %d (%d kb) texture atlas\n", w, h, w * h / 1024);
+        //fprintf(stderr, "Generated a %d x %d (%d kb) texture atlas\n", w, h, w * h / 1024);
     }
 
     ~atlas() {

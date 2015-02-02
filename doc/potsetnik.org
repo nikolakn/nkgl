@@ -1,6 +1,6 @@
 
 * todo
-
+logovi od shadera da se snimaju u fajl
 
 * potsetnik
 reorganizovano stablo direktorijuma u win7 proveriti dali je seve ok u linuxu. 

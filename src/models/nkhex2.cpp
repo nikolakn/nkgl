@@ -29,10 +29,7 @@ void NkHex2::init()
     glVertexAttribDivisor( location, divisor ); //is it instanced?
 
     program = 0;
-
-
     this->LoadShaders();
-    std::cout << (int)program << std::endl;
 
     gbuffer_instanced_mvp_mat_loc = glGetUniformLocation( program, "mvp" );
     gbuffer_instanced_normal_mat_loc = glGetUniformLocation( program, "normal_mat" );
@@ -177,6 +174,7 @@ GLuint NkHex2::createHex()
 // Method to load an image into a texture using the freeimageplus library. Returns the texture ID or dies trying.
 GLuint NkHex2::loadTexture(string filenameString, GLenum minificationFilter, GLenum magnificationFilter)
 {
+    //glGetError();
     // Get the filename as a pointer to a const char array to play nice with FreeImage
     const char* filename = filenameString.c_str();
 
@@ -238,19 +236,19 @@ GLuint NkHex2::loadTexture(string filenameString, GLenum minificationFilter, GLe
     FIBITMAP* bitmap32;
     if (bitsPerPixel == 32)
     {
-        cout << "Source image has " << bitsPerPixel << " bits per pixel. Skipping conversion." << endl;
+        //cout << "Source image has " << bitsPerPixel << " bits per pixel. Skipping conversion." << endl;
         bitmap32 = bitmap;
     }
     else
     {
-        cout << "Source image has " << bitsPerPixel << " bits per pixel. Converting to 32-bit colour." << endl;
+        //cout << "Source image has " << bitsPerPixel << " bits per pixel. Converting to 32-bit colour." << endl;
         bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
     }
 
     // Some basic image info - strip it out if you don't care
     int imageWidth  = FreeImage_GetWidth(bitmap32);
     int imageHeight = FreeImage_GetHeight(bitmap32);
-    cout << "Image: " << filenameString << " is size: " << imageWidth << "x" << imageHeight << "." << endl;
+    //cout << "Image: " << filenameString << " is size: " << imageWidth << "x" << imageHeight << "." << endl;
 
     // Get a pointer to the texture data as an array of unsigned bytes.
     // Note: At this point bitmap32 ALWAYS holds a 32-bit colour version of our image - so we get our data from that.
@@ -314,7 +312,7 @@ GLuint NkHex2::loadTexture(string filenameString, GLenum minificationFilter, GLe
                 break;
         }
 
-        cout << "See https://www.opengl.org/sdk/docs/man/html/glTexImage2D.xhtml for further details." << endl;
+        //cout << "See https://www.opengl.org/sdk/docs/man/html/glTexImage2D.xhtml for further details." << endl;
     }
 
     // Unload the 32-bit colour bitmap
@@ -332,9 +330,15 @@ GLuint NkHex2::loadTexture(string filenameString, GLenum minificationFilter, GLe
     // Finally, return the texture ID
     return tempTextureID;
 }
-
+/**
+* bind shaders with constants in compile time
+* to avoid duplicate it through code.
+*/
 void NkHex2::LoadShaders(){
     //shaders
+    std::string n = std::to_string(HEX_LINE_NUM);
+    std::string sidex = std::to_string(HEX_WIDTH);
+    std::string sidey = std::to_string(HEX_HEIGHT);
     string vertexShaderSource = {
         "#version 330\n"
         "uniform mat4 mvp;\n"
@@ -349,13 +353,13 @@ void NkHex2::LoadShaders(){
         "void main()\n"
         "{\n"
         "  vec4 vr= in_vertex;\n"
-        "  int N=200;\n"
+        "  int N="+n+";\n"
         "  int red=(gl_InstanceID/N);\n"
-        "  vr.z += red*0.18;\n"
+        "  vr.z += red*"+sidey+";\n"
         "  if (red%2!=0)\n"
-        "    vr.x += 0.2*(gl_InstanceID%N);\n"
+        "    vr.x += "+sidex+"*(gl_InstanceID%N);\n"
         "  else\n"
-        "    vr.x += 0.2*(gl_InstanceID%N)+0.1;\n"
+        "    vr.x += "+sidex+"*(gl_InstanceID%N)+0.1;\n"
         "  normal = normal_mat * in_normal;\n"
         "  gl_Position = mvp * view * vr;\n"
         "  pass_TextureCoord = in_tex;\n"
@@ -375,6 +379,6 @@ void NkHex2::LoadShaders(){
         "}\n"
     };
     framework frm;
-    frm.load_string_shader(vertexShaderSource, program, GL_VERTEX_SHADER); //, "./data/shaders/shaderhex2.vert" );
-    frm.load_string_shader(fragmentShaderSource, program, GL_FRAGMENT_SHADER); //, "./data/shaders/shaderhex2.frag" );
+    frm.load_string_shader(vertexShaderSource, program, GL_VERTEX_SHADER);
+    frm.load_string_shader(fragmentShaderSource, program, GL_FRAGMENT_SHADER);
 }

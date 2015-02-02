@@ -14,9 +14,10 @@ public:
     GLuint loadTexture(string filenameString,GLenum minificationFilter = GL_LINEAR, GLenum magnificationFilter = GL_LINEAR);
     void LoadShaders();
 private:
-    const float  HEX_WIDTH=0.2;  	//width of one hex
-    const float  HEX_HEIGHT=0.18; 	//height of one hex
-    const int HEX_SIZE = 50000;     //number of hex
+    const float  HEX_WIDTH=0.2;  	/**<width of one hex */
+    const float  HEX_HEIGHT=0.18; 	/**<height of one hex*/
+    const int HEX_SIZE = 50000;     /**<number of hex    */
+    const int HEX_LINE_NUM = 200;   /**<number of hex in one line*/
 
     GLuint box;
     GLuint position_vbo;
